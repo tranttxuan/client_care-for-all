@@ -23,9 +23,9 @@ export default {
                   .catch(errorHandler);
       },
 
-      signin(userInfo) {
+      login(userInfo) {
             return service
-                  .post("/auth/signin", userInfo)
+                  .post("/auth/login", userInfo)
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
