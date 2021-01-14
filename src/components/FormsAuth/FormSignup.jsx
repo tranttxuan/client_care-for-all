@@ -31,7 +31,6 @@ export default class FormSignup extends Component {
 		const { lastName, firstName, email, password } = this.state;
 		let isValid = true;
 		let errors = {};
-		let status = {};
 
 		//check email
 		if (!email) {
@@ -63,6 +62,11 @@ export default class FormSignup extends Component {
 		}
 
 		this.setState({ errors });
+
+		setTimeout(() => {
+			this.setState({ errors: "" });
+		}, 3000);
+
 		return isValid;
 
 	}
@@ -70,7 +74,10 @@ export default class FormSignup extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		if (this.checkValidation()) {
-			apiHandler.signup(this.state)
+			const { errors, ...data } = this.state;
+			console.log(errors)
+			console.log(data)
+			apiHandler.signup(data)
 				.then(data => {
 					this.context.setUser(data);
 				})
@@ -86,7 +93,7 @@ export default class FormSignup extends Component {
 	}
 
 	render() {
-		if(this.context.isLoggedIn) return <Redirect to="/" />;
+		if (this.context.isLoggedIn) return <Redirect to="/" />;
 
 		const { lastName, firstName, email, password, errors } = this.state;
 		const { err_lastName, err_firstName, err_email, err_password, err_submit } = errors;
@@ -116,7 +123,7 @@ export default class FormSignup extends Component {
 					<div className="form-group">
 						<label className='label' htmlFor="lastName">Last name</label>
 						<input
-							className={err_firstName ? "input failure" : 'input success'}
+							className={err_lastName ? "input failure" : 'input success'}
 							id="lastName"
 							type="text"
 							name="lastName"
@@ -130,7 +137,7 @@ export default class FormSignup extends Component {
 					<div className="form-group">
 						<label className='label' htmlFor="email">Email</label>
 						<input
-							className={err_firstName ? "input failure" : 'input success'}
+							className={err_email ? "input failure" : 'input success'}
 							id="email"
 							type="text"
 							name="email"
@@ -143,7 +150,7 @@ export default class FormSignup extends Component {
 					<div className="form-group">
 						<label className='label' htmlFor="password">Password</label>
 						<input
-							className={err_firstName ? "input failure" : 'input success'}
+							className={err_password ? "input failure" : 'input success'}
 							id="password"
 							type="password"
 							name="password"

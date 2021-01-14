@@ -1,0 +1,13 @@
+.profile_radio input + div {
+      display: none;
+}
+
+.profile_radio input:checked+div {
+      display: flex;
+}
+
+.image, img {
+      width: 100px;
+      height: 100px;
+}
+

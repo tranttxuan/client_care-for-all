@@ -1,0 +1,14 @@
+.after-icon{
+      display: none;
+}
+.icon{
+      color: red;
+      cursor: pointer;
+}
+.container-icon:hover > * {
+      display: flex;
+      cursor: pointer;
+}
+.after-icon{
+      flex-direction: column;
+}

@@ -21,13 +21,13 @@ export default class UserProvider extends Component {
       removeUser = () => {
             apiHandler.logout()
                   .then(() => {
-                        this.setState({ user: null, isLoggedIn: false });
+                        this.setState({ user: null, isLoggedIn: false, isLoading:true });
                   })
                   .catch(err => console.log(err))
       }
 
       setUser = (userInfo) => {
-            this.setState({ user: userInfo, isLoggedIn: true })
+            this.setState({ user: userInfo, isLoggedIn: true, isLoading:false })
       }
 
       render() {
