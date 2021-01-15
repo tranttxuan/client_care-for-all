@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
       state = {
 
       }
-      
+
 
       render() {
             const { image, firstName, lastName, birthday, formattedAddress } = this.context.user
@@ -18,22 +18,27 @@ export default class Dashboard extends Component {
 
             return (
                   <div className="dashboard__container">
-                        <div className="dashboard__information">
-                              <img src={image} className="image" />
-                              <p><em>Name : </em>{firstName} <strong>{lastName}</strong></p>
-                              <p><em>Age: </em>{age}</p>
-                              <p><em>Address : </em>{formattedAddress}</p>
+                        <h1>Dashboard</h1>
+                        <div>
+                              <div className="dashboard__information">
+                                    <img src={image} className="image" />
+                                    <p><em>Name : </em>{firstName} <strong>{lastName}</strong></p>
+                                    <p><em>Age: </em>{age}</p>
+                                    <p><em>Address : </em>{formattedAddress}</p>
+                              </div>
+<br></br>
+<br></br>
+                              <div style={{display:'flex', flexDirection:"column"}}>
+
+                                    <a href="/message">Your Messages</a>
+                                    <a href="/announcement">Your Announcement</a>
+                                    <a href="/message">Create a new announcement</a>
+                                    <a href="/message">List favorite Providers</a>
+                                    <a href="/message">Yours Reviews</a>
+                                    <a href="/message">Review Website</a>
+                              </div>
                         </div>
 
-                        <div>
-                     
-                              <a href="/message">Your Messages</a>
-                              <a href="/announcement">Your Announcement</a>
-                              <a>Create a new announcement</a>
-                              <a>List favorite Providers</a>
-                              <a>Yours Reviews</a>
-                              <a>Review Website</a>
-                        </div>
                   </div>
             )
       }
