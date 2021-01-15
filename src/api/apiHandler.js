@@ -40,4 +40,10 @@ export default {
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
+      updateProfile(data){
+            return service
+            .patch("/auth/update", data)
+            .then((res) => res.data)
+            .catch(errorHandler);
+      }
 };

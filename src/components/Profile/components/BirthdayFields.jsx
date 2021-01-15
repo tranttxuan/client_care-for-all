@@ -35,6 +35,7 @@ export default class BirthdayFields extends Component {
                               placeholder="yyyy"
                               value={this.state.year}
                               onChange={this.handleChange}
+                              required
                         />
                         <input
                               id="month"
@@ -43,6 +44,7 @@ export default class BirthdayFields extends Component {
                               placeholder="mm"
                               value={this.state.month}
                               onChange={this.handleChange}
+                              required
                         />
                         <input
                               id="day"
@@ -51,12 +53,8 @@ export default class BirthdayFields extends Component {
                               placeholder="dd"
                               value={this.state.day}
                               onChange={this.handleChange}
+                              required
                         />
-
-
-
-
-
                   </Fragment>
             )
       }

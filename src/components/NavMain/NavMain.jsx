@@ -23,7 +23,7 @@ function NavMain(props) {
                                           <NavLink to="/">Message???</NavLink>
                                     </li>
                                     <li className="container-icon">
-                                          <p className="icon">Icon</p>
+                                          <p className="icon">Icon-YOU</p>
                                           <ul className="after-icon">
                                                 <li>Hello <strong>{context.user.firstName}</strong></li>
                                                 <li> <NavLink to="/profile">Your profile</NavLink></li>

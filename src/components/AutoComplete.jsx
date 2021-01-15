@@ -67,6 +67,7 @@ class AutocompletePlace extends Component {
           value={this.props.defaultValue || this.state.search}
           onChange={this.handleSearchChange}
           placeholder="Type an address"
+          autoComplete="off"
         />
         <ul className="AutocompletePlace-results">
           {results.map((place) => (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import apiHandler from '../../api/apiHandler';
 import UserContext from '../Auth/UserContext';
+import { isValidField } from '../../utils';
 import "../../styles/FormSignup.css"
 
 export default class FormSignup extends Component {
@@ -58,14 +59,14 @@ export default class FormSignup extends Component {
 
 		if (!lastName) {
 			isValid = false;
-			errors.err_firstName = 'Please enter your first name';
+			errors.err_lastName = 'Please enter your last name';
 		}
 
 		this.setState({ errors });
 
 		setTimeout(() => {
 			this.setState({ errors: "" });
-		}, 3000);
+		}, 5000);
 
 		return isValid;
 

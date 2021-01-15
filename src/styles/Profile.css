@@ -11,3 +11,12 @@
       height: 100px;
 }
 
+
+.failure{
+      border: 1px solid red;
+      color: red;
+}
+.success{
+      color: green;
+      border: green;
+}
