@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../styles/AutoComplete.css";
 
-class AutocompletePlace extends Component {
+class Autocomplete extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,6 @@ class AutocompletePlace extends Component {
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
-
   handleSearchChange(e) {
     this.setState({
       search: e.target.value,
@@ -86,4 +85,4 @@ class AutocompletePlace extends Component {
   }
 }
 
-export default AutocompletePlace;
+export default Autocomplete;

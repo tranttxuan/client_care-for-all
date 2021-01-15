@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import apiHandler from '../../api/apiHandler';
 import { buildFormData } from '../../utils';
 import UserContext from '../Auth/UserContext'
 import AutoComplete from '../AutoComplete';
+import PopUp from '../PopUp';
 import UploadWidget from '../UploadWidget';
 import BirthdayFields from './components/BirthdayFields';
 import OtherServices from './components/OtherServices';
@@ -11,8 +12,7 @@ import Services from './components/Services';
 import VisibilityField from './components/VisibilityField';
 
 
-
-export default class EditProfile extends Component {
+class EditProfile extends Component {
       static contextType = UserContext;
 
       state = {
@@ -20,13 +20,13 @@ export default class EditProfile extends Component {
             image: '',
             errors: {
                   err_submit: '',
-                  err_submit_success: '',
                   err_birthday: '',
                   err_lastName: '',
                   err_firstName: '',
                   err_password: '',
                   err_email: ''
-            }
+            },
+            showPopUP: false,
       }
 
       imageRef = React.createRef();
@@ -35,7 +35,7 @@ export default class EditProfile extends Component {
             this.setState({
                   user: this.context.user
             });
-            console.log(this.context)
+            console.log("check", this.context)
       }
 
       handleChange = (event) => {
@@ -58,6 +58,7 @@ export default class EditProfile extends Component {
             this.setState({ user: { ...this.state.user, location, formattedAddress } })
       }
       handleVisibility = (value) => {
+            console.log(value)
             this.setState({ user: { ...this.state.user, isProvider: value } })
       }
       handleServices = (name, checked) => {
@@ -131,7 +132,7 @@ export default class EditProfile extends Component {
 
             if (this.checkValidation()) {
                   const fd = new FormData();
-                  const { errors, image, ...user } = this.state;
+                  const { showPopUP, errors, image, ...user } = this.state;
 
                   buildFormData(fd, user);
 
@@ -152,12 +153,11 @@ export default class EditProfile extends Component {
                                           errors: { ...prevState.errors, err_submit: "Check your new password", err_password: "Please make your password at least 6 characters, that contains at least one uppercase, one lowercase and one number digit in it, for security purposes." }
                                     }));
                               } else {
+
                                     this.context.setUser(data);
-
-                                    this.setState(prevState => ({
-                                          errors: { ...prevState.errors, err_submit_success: "Successfully updated your profile" }
-                                    }));
-
+                                    setTimeout(() => {
+                                          this.setState({ showPopUP: true });
+                                    }, 1000);
                               }
 
                         })
@@ -176,8 +176,9 @@ export default class EditProfile extends Component {
       }
 
       render() {
+            console.log(this.props)
             const { errors } = this.state;
-            const { err_lastName, err_firstName, err_email, err_password, err_submit, err_birthday, err_submit_success } = errors;
+            const { err_lastName, err_firstName, err_email, err_password, err_submit, err_birthday } = errors;
             // console.log("lala", this.state?.user?.lastName)
             return (
                   this.state.user ?
@@ -185,7 +186,7 @@ export default class EditProfile extends Component {
                               <h1>Edit your profile</h1>
 
                               <form onSubmit={this.handleSubmit} style={{ display: 'flex', flexDirection: "column" }}>
-
+                                    {err_submit && <p className="failure">{err_submit}</p>}
                                     <div className="block">
                                           <h2>Profile status</h2>
                                           {this.state.user.isProvider
@@ -285,9 +286,15 @@ export default class EditProfile extends Component {
                                     <div className="block">
                                           <div className="form-group">
                                                 <label className='label' htmlFor="formattedAddress">Address</label>
+                                                {this.context.user.formattedAddress &&
+                                                      (<div>
+                                                            <p>Your current address: {this.context.user.formattedAddress}</p>
+                                                            <p>Change your address:</p>
+                                                      </div>
+                                                      )}
                                                 <AutoComplete
                                                       onSelect={this.handlePlace}
-                                                      defaultValue={this.context.user.formattedAddress} />
+                                                />
                                           </div>
 
                                           <div className="form-group">
@@ -346,7 +353,7 @@ export default class EditProfile extends Component {
                                     <br></br>
                                     <br></br>
                                     <div className="block">
-                                          <h2>Who can see your profile</h2>
+                                          <h2>Everyone can view my profile</h2>
                                           <div className="form-group">
                                                 <VisibilityField
                                                       defaultValue={this.state.user.isProvider}
@@ -359,7 +366,7 @@ export default class EditProfile extends Component {
                                     <br></br>
                                     <br></br>
                                     <div className="block">
-                                          <h2>What would you like to do?</h2>
+                                          <h2>I find a job/jobs at</h2>
                                           <div className="form-group">
                                                 <Services
                                                       defaultValue={this.state.user.service}
@@ -368,7 +375,7 @@ export default class EditProfile extends Component {
                                                 />
                                           </div>
 
-                                          <h2>Other service</h2>
+                                          <h2>I'm comfortable with:</h2>
                                           <div className="form-group">
 
                                                 <OtherServices
@@ -397,13 +404,24 @@ export default class EditProfile extends Component {
 
                                     </div>
 
-                                    <button onClick={this.handleClick} className={err_submit_success ? "success" : ''}>Edit</button>
-                                    {err_submit && <p className="failure">{err_submit}</p>}
-                                    {err_submit_success && <p className="success">{err_submit_success}</p>}
+                                    <button onClick={this.handleClick}>Edit</button>
+
                               </form>
+                              {this.state.showPopUP
+                                    && <PopUp message="Successfully updated your profile!"
+                                          btnOne="Your Page"
+                                          handleBtnOne={() => { this.props.history.push(`/`) }}
+                                          btnTwo="Dashboard"
+                                          handleBtnTwo={() => {
+                                                this.props.history.push("/profile")
+                                                window.location.reload();
+                                          }}
+                                    />}
                         </div>
                         : <h1>Loading ...</h1>
             )
 
       }
 }
+
+export default withRouter(EditProfile)

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { getAge } from '../../utils';
 import UserContext from '../Auth/UserContext'
+import AnnouncementList from '../Announcement/AnnouncementList';
 
 export default class Dashboard extends Component {
       static contextType = UserContext;
@@ -29,6 +30,11 @@ export default class Dashboard extends Component {
 <br></br>
 <br></br>
                               <div style={{display:'flex', flexDirection:"column"}}>
+                              <div className="block">
+                                    <h2>List of announcement</h2> 
+                                    <NavLink to="/announcements/new">Add new</NavLink>
+                                    {/* <AnnouncementList /> */}
+                              </div>
 
                                     <a href="/message">Your Messages</a>
                                     <a href="/announcement">Your Announcement</a>

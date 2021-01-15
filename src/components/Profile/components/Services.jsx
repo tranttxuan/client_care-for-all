@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react'
 
 export default class Services extends Component {
       state = {
-            childCare: '',
-            seniorCare: '',
-            petCare: ''
+            childCare: false,
+            seniorCare: false,
+            petCare: false
       }
       handleChange = (event) => {
             const { name, checked } = event.target
@@ -12,14 +12,12 @@ export default class Services extends Component {
             this.props.handleServices(name, checked);
       }
       componentDidMount() {
-            // console.log("la", this.props.defaultValue)
             if (this.props.defaultValue) {
                   const { childCare, seniorCare, petCare } = this.props.defaultValue
-                  this.setState({ childCare, seniorCare, petCare })
+                  this.setState({ childCare:childCare, seniorCare:seniorCare, petCare:petCare })
             }
       }
       render() {
-            // console.log(this.state.childCare,"-------------")
             return (
                   <Fragment>
                         <label className='label' htmlFor="childCare">Child care</label>
@@ -29,7 +27,6 @@ export default class Services extends Component {
                               name="childCare"
                               onChange={this.handleChange}
                               checked={this.state.childCare}
-
                         />
 
                         <label className='label' htmlFor="seniorCare">Senior care</label>

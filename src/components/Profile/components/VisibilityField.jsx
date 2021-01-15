@@ -2,15 +2,23 @@ import React, { Component, Fragment } from 'react'
 
 export default class VisibilityField extends Component {
       state = {
-            public: true,
+            isProvider: "",
       }
       handleChange = (event) => {
-            this.setState({ public: event.target.value });
-            this.props.handleVisibility(event.target.value);
-            console.log(event.target.value)
+           const {name, value} = event.target;
+           console.log({name},{value})
+           if(value === "public"){
+                 console.log("vo day")
+            this.setState({ isProvider: true });
+            this.props.handleVisibility(true);
+           }else{
+            this.setState({ isProvider: false });
+            this.props.handleVisibility(false);
+           }
+          
       }
       componentDidMount() {
-            this.setState({ public: this.props.defaultValue })
+            this.setState({ isProvider: this.props.defaultValue })
       }
       render() {
             "test"
@@ -20,20 +28,21 @@ export default class VisibilityField extends Component {
                         <input
                               type="radio"
                               id="public"
-                              name="public"
-                              value="true"
+                              name="isProvider"
+                              value="public"
                               onChange={this.handleChange}
-                              checked={this.state.public === "true" ? true : false}
+                              checked={this.state.isProvider}
                         />
+
+
                         <label htmlFor="private">Private</label>
                         <input
                               type="radio"
                               id="private"
-                              name="public"
-                              value="false"
+                              value="private"
+                              name="isProvider"
                               onChange={this.handleChange}
-                              checked={this.state.public === "true" ? false : true}
-
+                              checked={!this.state.isProvider}
                         />
 
                   </Fragment>

@@ -15,7 +15,9 @@ function errorHandler(error) {
 
 export default {
       service,
-
+      //*******/ 
+      // Auth
+      //*******/ 
       signup(userInfo) {
             return service
                   .post("/auth/signup", userInfo)
@@ -40,10 +42,34 @@ export default {
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
-      updateProfile(data){
+
+      updateProfile(data) {
             return service
-            .patch("/auth/update", data)
-            .then((res) => res.data)
-            .catch(errorHandler);
+                  .patch("/auth/update", data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
+      //*******/ 
+      // Announcement
+      //*******/ 
+      createAnnouncement(data) {
+            return service
+                  .post("/announcements/new", data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      getOneAnnouncement(id) {
+            return service
+                  .get(`/announcements/one/${id}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      updateOneAnnouncement(data, id) {
+            return service
+                  .patch(`/announcements/update/${id}`, data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
       }
+
 };
