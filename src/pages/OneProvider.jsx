@@ -18,10 +18,7 @@ class OneProvider extends Component {
             if (!this.state.isFavorite === true) {
                   apiHandler
                         .addToFavoriteList(idProvider)
-                        .then(response => {
-                              console.log(response)
-                              this.setState({ isFavorite: false })
-                        })
+                        .then(response => {console.log(response) })
                         .catch(err => {
                               console.log(err.message)
                               this.setState({ error: err.message, isFavorite:false })
