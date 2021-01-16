@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_URL + "/api",
+      baseURL: 'http://localhost:4000/api',
       withCredentials: true,
 });
 
@@ -75,14 +75,40 @@ export default {
             return service
                   .delete(`/announcements/delete/${id}`)
                   .then((res) => res.data)
-                  .catch(errorHandler); 
+                  .catch(errorHandler);
       },
-      getAnnouncementsByAuthor(id){
+      getAnnouncementsByAuthor(id) {
             return service
-            .get(`/announcements/author/${id}`)
-            .then((res) => res.data)
-            .catch(errorHandler); 
-      }
+                  .get(`/announcements/author/${id}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      //*******/ 
+      // Review
+      //*******/
+      addReview(data, id) {
+            return service
+                  .post(`/reviews/create/${id}`, data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
 
+      //*******/ 
+      // Provider
+      //*******/
+      //Added to favorite list
+      addToFavoriteList(idProvider) {
+            return service
+                  .post(`/providers/favorite/${idProvider}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
+      takeOffFavoriteList(idProvider) {
+            return service
+                  .post(`/providers/no-favorite/${idProvider}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      }
 
 };

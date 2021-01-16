@@ -4,8 +4,10 @@ import EditAnnouncement from './components/Announcement/EditAnnouncement';
 import NewAnnouncement from './components/Announcement/NewAnnouncement';
 import ProtectRoute from './components/Auth/ProtectRoute';
 import NavMain from './components/NavMain/NavMain';
+import AddReview from './pages/AddReview';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import OneProvider from './pages/OneProvider';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 
@@ -29,6 +31,12 @@ export default class App extends Component {
           {/* Announcement  */}
           <ProtectRoute exact path="/announcements/new" component={NewAnnouncement} />
           <ProtectRoute exact path="/announcements/edit/:idPost" component={NewAnnouncement} />
+
+
+
+          {/* Provider  */}
+          <Route exact path="/provider/:idProvider" component={OneProvider} />
+          <ProtectRoute exact path="/provider/:idProvider/review" component={AddReview} />
         </Switch>
 
 
