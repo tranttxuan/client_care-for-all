@@ -9,3 +9,8 @@
 html{
       font-size: 13px;
 }
+.block{
+      padding:1rem;
+      border: 1px solid gray;
+      border-radius: 5px;
+}

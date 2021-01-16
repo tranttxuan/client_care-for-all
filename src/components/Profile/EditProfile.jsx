@@ -35,7 +35,6 @@ class EditProfile extends Component {
             this.setState({
                   user: this.context.user
             });
-            console.log("check", this.context)
       }
 
       handleChange = (event) => {
@@ -176,7 +175,7 @@ class EditProfile extends Component {
       }
 
       render() {
-            console.log(this.props)
+          
             const { errors } = this.state;
             const { err_lastName, err_firstName, err_email, err_password, err_submit, err_birthday } = errors;
             // console.log("lala", this.state?.user?.lastName)

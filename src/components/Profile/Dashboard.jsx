@@ -13,8 +13,7 @@ export default class Dashboard extends Component {
 
 
       render() {
-            const { image, firstName, lastName, birthday, formattedAddress } = this.context.user
-            console.log(this.context.user)
+            const { image, firstName, lastName, birthday, formattedAddress, _id } = this.context.user
             const age = getAge(birthday)
 
             return (
@@ -33,7 +32,7 @@ export default class Dashboard extends Component {
                               <div className="block">
                                     <h2>List of announcement</h2> 
                                     <NavLink to="/announcements/new">Add new</NavLink>
-                                    {/* <AnnouncementList /> */}
+                                    <AnnouncementList idUser={_id} />
                               </div>
 
                                     <a href="/message">Your Messages</a>

@@ -70,6 +70,19 @@ export default {
                   .patch(`/announcements/update/${id}`, data)
                   .then((res) => res.data)
                   .catch(errorHandler);
+      },
+      deleteOneAnnouncement(id) {
+            return service
+                  .delete(`/announcements/delete/${id}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler); 
+      },
+      getAnnouncementsByAuthor(id){
+            return service
+            .get(`/announcements/author/${id}`)
+            .then((res) => res.data)
+            .catch(errorHandler); 
       }
+
 
 };
