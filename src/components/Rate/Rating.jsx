@@ -18,9 +18,10 @@ class Rating extends Component {
 
       }
       onClick = (index) => {
-            console.log("index", index)
-            this.setState({ rating: index });
-            this.props.addStarRating(index)
+            if (!this.state.inReviewCard) {
+                  this.setState({ rating: index });
+                  this.props.addStarRating(index)
+            }
       }
       render() {
             const { stars, rating, inReviewCard } = this.state;
@@ -28,7 +29,6 @@ class Rating extends Component {
             for (let i = 1; i < rating + 1; i++) {
                   rateInCard.push(i)
             }
-            console.log("check", rateInCard)
             return (
                   <Fragment>
                         {!inReviewCard && <h3>Star Rating</h3>}

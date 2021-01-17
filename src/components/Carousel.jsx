@@ -55,7 +55,7 @@ export default class Carousel extends Component {
                               className="carousel__arrow carousel__arrow--left"
                               onClick={e => this.goToPrevSlide(e)}
                         >
-                              <i class="fas fa-angle-left"></i>
+                              <i className="fas fa-angle-left"></i>
                         </a>
 
                         <ul className="carousel__slides">
@@ -86,7 +86,7 @@ export default class Carousel extends Component {
                               className="carousel__arrow carousel__arrow--right"
                               onClick={e => this.goToNextSlide(e)}
                         >
-                              <i class="fas fa-angle-right"></i>
+                              <i className="fas fa-angle-right"></i>
                         </a>
 
                         <ul className="carousel__indicators">

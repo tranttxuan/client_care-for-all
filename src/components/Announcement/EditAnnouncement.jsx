@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom';
 import apiHandler from '../../api/apiHandler';
 import UserContext from '../Auth/UserContext'
-import AutocompletePlace from '../AutoComplete';
+import AutocompletePlace from '../Map/AutoComplete';
 import PopUp from '../PopUp';
 import OtherServices from '../Profile/components/OtherServices';
 import Services from '../Profile/components/Services';

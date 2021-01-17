@@ -112,9 +112,9 @@ export default {
                   .catch(errorHandler);
       },
 
-      getOneProvider(idProvider){
+      getOneProvider(idProvider, limit){
             return service
-            .get(`/providers/one/${idProvider}`)
+            .get(`/providers/one/${idProvider}?limit=${limit}`)
             .then((res) => res.data)
             .catch(errorHandler);
       }

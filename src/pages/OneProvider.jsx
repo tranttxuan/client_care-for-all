@@ -1,64 +1,63 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom';
 import apiHandler from '../api/apiHandler';
+import UserContext from '../components/Auth/UserContext';
+import ButtonAddFavoriteList from '../components/ButtonAddFavoriteList';
 import Carousel from '../components/Carousel';
+import MapInCard from '../components/Map/MapInCard';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 import ReviewCard from '../components/ReviewCard';
 import { getAge } from '../utils';
 
 class OneProvider extends Component {
+      static contextType = UserContext;
       state = {
-            isFavorite: false,
+
             provider: null,
+            seeMore: false
       }
-      getData = () => {
-            console.log("check", this.props.match.params.idProvider)
+      getData = (limit) => {
+            // console.log("check", this.props.match.params.idProvider)
             apiHandler
-                  .getOneProvider(this.props.match.params.idProvider)
+                  .getOneProvider(this.props.match.params.idProvider, limit)
                   .then(data => { this.setState({ provider: data[0] }) })
                   .catch(err => console.log(err.message))
       }
       componentDidMount() {
-            this.getData();
-
+            this.getData(4);
       }
 
       handleBack = () => {
             this.props.history.goBack();
       }
 
-      addToFavorite = () => {
-            this.setState({ isFavorite: !this.state.isFavorite });
-            const idProvider = this.props.match.params.idProvider;
-
-            if (!this.state.isFavorite === true) {
-                  apiHandler
-                        .addToFavoriteList(idProvider)
-                        .then(response => { console.log(response) })
-                        .catch(err => {
-                              console.log(err.message)
-                              this.setState({ isFavorite: false })
-                        })
-            } else {
-                  apiHandler.takeOffFavoriteList(idProvider)
-                        .then(response => {
-                              console.log(response)
-                        })
-                        .catch(err => { console.log(err.message) })
-            }
+      seeMore = () => {
+            this.getData(100);
+            this.setState({ seeMore: true })
       }
+      requestBooking = () => {
+
+      }
+
       render() {
-            const { isFavorite, provider } = this.state;
+            const { provider, seeMore } = this.state;
             if (provider) {
-                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews } = provider
+                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location } = provider
                   let age = '';
                   if (provider) {
                         if (provider.birthday) {
                               age = getAge(provider.birthday)
                         }
                   }
-                  // reviews.map(a => console.log(a))
+                  // console.log(location.coordinates[1])
+                  //if this provider is in the current user's favorite list 
+                  let isInFavList = false;
+                  if (this.context.user) {
+                        if (this.context.user.favoriteProviders.includes(this.props.match.params.idProvider)) {
+                              isInFavList = true;
+                        }
+                  }
 
                   return (
                         <div>
@@ -70,11 +69,10 @@ class OneProvider extends Component {
                                     }}
                                     >Add Review</NavLink>
 
-                                    <button onClick={this.addToFavorite}>
-                                          {isFavorite
-                                                ? <i className="fas fa-heart" style={{ color: "red" }} />
-                                                : <i className="far fa-heart solid" />}
-                                    </button>
+                                    <ButtonAddFavoriteList
+                                          idProvider={this.props.match.params.idProvider}
+                                          isAdded={isInFavList && true}
+                                    />
                               </div>
 
                               <div>
@@ -106,18 +104,25 @@ class OneProvider extends Component {
                                           <p>{availability}</p>
                                     </div>
 
-                                    <div>
-                                          {reviews.map((review, id) =>
-                                                <ReviewCard
-                                                      key={id}
-                                                      review={review.review}
-                                                      name={review.sender.firstName}
-                                                      rate={review.rate}
-                                                />
-                                          )}
-
-                                          <Carousel reviews={reviews}/>
+                                    <div className="block">
+                                          <h2>Reviews</h2> {!seeMore && <button onClick={this.seeMore}>more reviews</button>}
+                                          <Carousel reviews={reviews} />
                                     </div>
+
+                                    {location.coordinates.length !== 0 && <div className="block">
+                                          <h2>Location</h2>
+                                          <MapInCard
+                                                lat={location.coordinates[0]}
+                                                lng={location.coordinates[1]}
+                                          />
+                                    </div>}
+                              </div>
+                              <br></br>
+                              <br></br>
+                              <br></br>
+                              <div className="block">
+                                    <button>Contact</button>
+                                    <button onClick={this.requestBooking}>Booking</button>
                               </div>
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "../styles/AutoComplete.css";
+import "../../styles/AutoComplete.css";
 
 class Autocomplete extends Component {
   constructor(props) {
@@ -37,7 +37,8 @@ class Autocomplete extends Component {
     }
     axios
       .get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.search}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
+        // `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.search}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.search}.json?access_token=pk.eyJ1IjoidHJhbngiLCJhIjoiY2tqZzR2M2RhMG1mNjJ5bG9wbTF2Z3EwaSJ9.s4CffQ9GjURVeHVpgekb1A`
       )
       .then((response) => {
         this.setState({

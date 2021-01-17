@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import apiHandler from '../../api/apiHandler';
 import UserContext from '../Auth/UserContext';
-import { isValidField } from '../../utils';
 import "../../styles/FormSignup.css"
 
 export default class FormSignup extends Component {
