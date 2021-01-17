@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom';
 import apiHandler from '../api/apiHandler';
+import Carousel from '../components/Carousel';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
+import ReviewCard from '../components/ReviewCard';
 import { getAge } from '../utils';
 
 class OneProvider extends Component {
@@ -11,6 +13,7 @@ class OneProvider extends Component {
             provider: null,
       }
       getData = () => {
+            console.log("check", this.props.match.params.idProvider)
             apiHandler
                   .getOneProvider(this.props.match.params.idProvider)
                   .then(data => { this.setState({ provider: data[0] }) })
@@ -48,14 +51,14 @@ class OneProvider extends Component {
       render() {
             const { isFavorite, provider } = this.state;
             if (provider) {
-                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability } = provider
+                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews } = provider
                   let age = '';
                   if (provider) {
                         if (provider.birthday) {
                               age = getAge(provider.birthday)
                         }
                   }
-                  console.log(provider)
+                  // reviews.map(a => console.log(a))
 
                   return (
                         <div>
@@ -64,9 +67,9 @@ class OneProvider extends Component {
                                     <NavLink to={{
                                           pathname: `/provider/${this.props.match.params.idProvider}/review`,
                                           state: { name: provider.firstName }
-                                    }} >Add Review</NavLink>
+                                    }}
+                                    >Add Review</NavLink>
 
-                                    {/* <NavLink to={`/provider/${this.props.match.params.idProvider}/review`}>REview</NavLink> */}
                                     <button onClick={this.addToFavorite}>
                                           {isFavorite
                                                 ? <i className="fas fa-heart" style={{ color: "red" }} />
@@ -102,9 +105,18 @@ class OneProvider extends Component {
                                           <h2>Availability</h2>
                                           <p>{availability}</p>
                                     </div>
-                                    
+
                                     <div>
-                                        review  map
+                                          {reviews.map((review, id) =>
+                                                <ReviewCard
+                                                      key={id}
+                                                      review={review.review}
+                                                      name={review.sender.firstName}
+                                                      rate={review.rate}
+                                                />
+                                          )}
+
+                                          <Carousel reviews={reviews}/>
                                     </div>
                               </div>
 

@@ -1,21 +1,21 @@
 import React, { Component, Fragment } from 'react'
 import apiHandler from '../api/apiHandler';
 import PopUp from '../components/PopUp';
-import Rating from '../components/AddReview/Rating';
+import Rating from '../components/Rate/Rating';
 import { withRouter } from 'react-router-dom';
 
 class AddReview extends Component {
       state = {
             review: '',
-            rating: '',
+            rate: '',
             error: '',
             displayMessage: false
       }
       handleChange = (event) => {
             this.setState({ [event.target.name]: event.target.value });
       }
-      addStarRating = (rating) => {
-            this.setState({ rating: rating + 1 })
+      addStarRating = (rate) => {
+            this.setState({ rate: rate + 1 })
       }
       handleSubmit = (event) => {
             event.preventDefault();
@@ -26,6 +26,7 @@ class AddReview extends Component {
                         this.setState({ error: "" })
                   }, 3000);
             } else {
+                  // console.log("data", data)
                   apiHandler.addReview(data, this.props.match.params.idProvider)
                         .then(response => {
                               if (response.message === "Successfully added a review") {
@@ -58,7 +59,7 @@ class AddReview extends Component {
                                           onChange={this.handleChange}
                                     />
                               </div>
-                              <Rating addStarRating={this.addStarRating} />
+                              <Rating addStarRating={this.addStarRating}/>
                               <button>Add Review</button>
                         </form>
                         {this.state.displayMessage &&

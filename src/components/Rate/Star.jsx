@@ -7,8 +7,8 @@ function Star({ rating, startId, onClick }) {
       }
       return (
             <div onClick={onClick} >
-                  <svg height="30px"
-                        width="33px"
+                  <svg height="20px"
+                        width="23px"
                         className={styleClass}
                         viewBox="0 0 25 23"
                         data-rating="1">

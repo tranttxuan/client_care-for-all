@@ -38,7 +38,6 @@ class EditProfile extends Component {
       }
 
       handleChange = (event) => {
-            // const { name, value } = event.target;
             const value = event.target.type === "file" ? event.target.files[0] : event.target.value;
             const name = event.target.name;
             this.setState({ user: { ...this.state.user, [name]: value } })
@@ -175,7 +174,7 @@ class EditProfile extends Component {
       }
 
       render() {
-          
+
             const { errors } = this.state;
             const { err_lastName, err_firstName, err_email, err_password, err_submit, err_birthday } = errors;
             // console.log("lala", this.state?.user?.lastName)
@@ -408,8 +407,11 @@ class EditProfile extends Component {
                               </form>
                               {this.state.showPopUP
                                     && <PopUp message="Successfully updated your profile!"
-                                          btnOne="Your Page"
-                                          handleBtnOne={() => { this.props.history.push(`/`) }}
+                                          btnOne={this.context.user.isProvider && "Your Page"}
+                                          handleBtnOne={() => {
+                                                // the user has a public page 
+                                                this.props.history.push(`/provider/${this.context.user._id}`)
+                                          }}
                                           btnTwo="Dashboard"
                                           handleBtnTwo={() => {
                                                 this.props.history.push("/profile")

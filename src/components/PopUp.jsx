@@ -8,7 +8,7 @@ function PopUp({ message,btnOne, btnTwo, handleBtnOne, handleBtnTwo }) {
                   <div className="PopUp__container">
                         <h1>{message}</h1>
                         <div>
-                        <button onClick={e => handleBtnOne(e)}>{btnOne}</button>
+                        {btnOne && <button onClick={e => handleBtnOne(e)}>{btnOne}</button>}
                         <button onClick={e => handleBtnTwo(e)}>{btnTwo}</button>
                            
                         </div>
