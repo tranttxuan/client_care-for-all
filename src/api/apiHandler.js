@@ -109,6 +109,13 @@ export default {
                   .post(`/providers/no-favorite/${idProvider}`)
                   .then((res) => res.data)
                   .catch(errorHandler);
+      },
+
+      getOneProvider(idProvider){
+            return service
+            .get(`/providers/one/${idProvider}`)
+            .then((res) => res.data)
+            .catch(errorHandler);
       }
 
 };

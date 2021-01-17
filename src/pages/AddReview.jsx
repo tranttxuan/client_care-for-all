@@ -44,7 +44,7 @@ class AddReview extends Component {
       render() {
             return (
                   <Fragment>
-                        <h2>Your review for <strong>{this.props.name}</strong></h2>
+                        <h2>Your review for <strong>{this.props.location.state.name}</strong></h2>
                         {this.state.error && <p>{this.state.error}</p>}
                         <form onSubmit={this.handleSubmit}>
                               <div className="form-group">
