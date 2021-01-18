@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import apiHandler from '../api/apiHandler';
-import PopUp from '../components/PopUp';
-import Rating from '../components/Rate/Rating';
+import PopUp from '../../PopUp';
 import { withRouter } from 'react-router-dom';
+import apiHandler from '../../../api/apiHandler';
+import Star from '../../Rate/Star';
+import Rating from '../../Rate/Rating';
 
-class AddReview extends Component {
+class ReviewWeb extends Component {
       state = {
             review: '',
             rate: '',
@@ -26,39 +27,22 @@ class AddReview extends Component {
                         this.setState({ error: "" })
                   }, 3000);
             } else {
-                  // console.log("data", data)
-                  if (this.props.match.params.idProvider) {
-                        apiHandler.addReview(data, this.props.match.params.idProvider)
-                              .then(response => {
-                                    if (response.message === "Successfully added a review") {
-                                          this.setState({ displayMessage: true });
-                                    } else {
-                                          this.setState({ error: response.message })
-                                    }
-                              })
-                              .catch(err => {
-                                    console.log(err.message)
-                                    this.setState({ error: err.message })
-                              })
-                  } else {
-                        console.log("data", data)
-                        apiHandler.addWebReview(data)
-                              .then(response => {
-                                    this.setState({ displayMessage: true });
-                              })
-                              .catch(err => {
-                                    console.log(err.message)
-                                    this.setState({ error: err.message })
-                              })
-                  }
-
+                  console.log("data", data)
+                  apiHandler.addWebReview(data)
+                        .then(response => {
+                              this.setState({ displayMessage: true });
+                        })
+                        .catch(err => {
+                              console.log(err.message)
+                              this.setState({ error: err.message })
+                        })
             }
 
       }
       render() {
             return (
                   <Fragment>
-                        <h2>Your review for <strong>{this.props.location.state?.name}</strong></h2>
+
                         {this.state.error && <p>{this.state.error}</p>}
                         <form onSubmit={this.handleSubmit}>
                               <div className="form-group">
@@ -72,8 +56,8 @@ class AddReview extends Component {
                                           onChange={this.handleChange}
                                     />
                               </div>
-
                               <Rating addStarRating={this.addStarRating} />
+
                               <button>Add Review</button>
                         </form>
                         {this.state.displayMessage &&
@@ -89,4 +73,4 @@ class AddReview extends Component {
             )
       }
 }
-export default withRouter(AddReview);
+export default withRouter(ReviewWeb);

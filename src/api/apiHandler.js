@@ -2,7 +2,7 @@ import axios from "axios";
 
 const service = axios.create({
       baseURL: 'http://localhost:4000/api',
-      // baseURL: process.env.REACT_APP_BACKEND_URL+'api',
+      // baseURL: process.env.REACT_APP_BACKEND_URL + 'api',
       withCredentials: true,
 });
 
@@ -90,6 +90,14 @@ export default {
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
+
+      applyForJob(id) {
+            return service
+                  .post(`/announcements/apply/${id}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
       //*******/ 
       // Review
       //*******/
@@ -99,6 +107,17 @@ export default {
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
+
+      //*******/ 
+      // Review for website
+      //*******/
+      addWebReview(data) {
+            return service
+                  .post(`/web-reviews`, data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
 
       //*******/ 
       // Provider
@@ -134,6 +153,12 @@ export default {
       cancelBookingRequest(idProvider) {
             return service
                   .post(`/providers/no-booking/${idProvider}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      deleteBookingByCurrentUser(idUser) {
+            return service
+                  .post(`/providers/no-booking/user/${idUser}`)
                   .then((res) => res.data)
                   .catch(errorHandler);
       },

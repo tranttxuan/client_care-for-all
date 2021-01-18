@@ -5,6 +5,8 @@ import UserContext from '../Auth/UserContext'
 import AnnouncementList from '../Announcement/AnnouncementList';
 import FavoriteOrBookingList from './components/FavoriteOrBookingList';
 import apiHandler from '../../api/apiHandler';
+import AddReview from '../../pages/AddReview';
+
 
 
 export default class Dashboard extends Component {
@@ -27,7 +29,7 @@ export default class Dashboard extends Component {
       }
 
       render() {
-            // console.log("user", this.state.user)
+            console.log("user", this.state.user)
             if (this.state.user) {
                   const { image, firstName, lastName, birthday, formattedAddress, _id, favoriteProviders, bookingList } = this.state.user
                   const age = getAge(birthday)
@@ -65,11 +67,15 @@ export default class Dashboard extends Component {
                                                 <FavoriteOrBookingList list={bookingList} isFavList="false" />
                                           </div>
 
+                                          <br></br>
+                                          <h1>Website</h1>
+                                          <div className="block">
+                                              <AddReview />
+                                          </div>
 
                                           <a href="/message">Your Messages</a>
 
-                                          <a href="/message">Yours Reviews</a>
-                                          <a href="/message">Review Website</a>
+
                                     </div>
                               </div>
 

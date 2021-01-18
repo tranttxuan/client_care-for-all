@@ -7,6 +7,7 @@ import NavMain from './components/NavMain/NavMain';
 import AddReview from './pages/AddReview';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import OneAnnounce from './pages/OneAnnounce';
 import OneProvider from './pages/OneProvider';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
@@ -31,7 +32,7 @@ export default class App extends Component {
           {/* Announcement  */}
           <ProtectRoute exact path="/announcements/new" component={NewAnnouncement} />
           <ProtectRoute exact path="/announcements/edit/:idPost" component={NewAnnouncement} />
-
+          <Route exact path="/announcements/:idAnnouncement" component={OneAnnounce} />
 
 
           {/* Provider  */}

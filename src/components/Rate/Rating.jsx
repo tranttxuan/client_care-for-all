@@ -12,9 +12,13 @@ class Rating extends Component {
       }
       componentDidMount() {
             //use for provider's page
-            if (this.props.match.path.split("/")[this.props.match.path.split("/").length - 1] !== "review") {
+            if (this.props.match.path === "/profile") {
+                  this.setState({ inReviewCard: false })
+            }
+            if (this.props.match.path.split("/")[this.props.match.path.split("/").length - 1] !== "review" && this.props.match.path !== "/profile") {
                   this.setState({ rating: this.props.rate, inReviewCard: true })
             }
+            console.log("youre here", this.props.match.path)
 
       }
       onClick = (index) => {
@@ -29,11 +33,12 @@ class Rating extends Component {
             for (let i = 1; i < rating + 1; i++) {
                   rateInCard.push(i)
             }
+            console.log("youre there", inReviewCard)
             return (
-                  <Fragment>
+                  <div>
                         {!inReviewCard && <h3>Star Rating</h3>}
                         <div style={{ display: 'flex' }}>
-                              {(inReviewCard ? rateInCard : stars)
+                              {/* {(inReviewCard ? rateInCard : stars)
                                     .map((star, index) => {
                                           return (
                                                 <Star
@@ -43,10 +48,33 @@ class Rating extends Component {
                                                       onClick={() => this.onClick(index)}
                                                 />
                                           )
-                                    })}
+                                    })} */}
+
+                              {inReviewCard
+                                    ? rateInCard.map((star, index) => {
+                                          return (
+                                                <Star
+                                                      key={index}
+                                                      startId={index}
+                                                      rating={rating}
+                                                      onClick={() => this.onClick(index)}
+                                                />
+                                          )
+                                    })
+                                    : stars.map((star, index) => {
+                                          return (
+                                                <Star
+                                                      key={index}
+                                                      startId={index}
+                                                      rating={rating}
+                                                      onClick={() => this.onClick(index)}
+                                                />
+                                          )
+                                    })
+                              }
                         </div>
 
-                  </Fragment>
+                  </div>
             )
       }
 }

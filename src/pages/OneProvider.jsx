@@ -7,7 +7,6 @@ import Carousel from '../components/Carousel';
 import MapInCard from '../components/Map/MapInCard';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
-import ReviewCard from '../components/ReviewCard';
 import { getAge } from '../utils';
 import ButtonBookingRequest from './ButtonBookingRequest';
 
@@ -70,6 +69,7 @@ class OneProvider extends Component {
                                           state: { name: provider.firstName }
                                     }}
                                     >Add Review</NavLink>
+
 
                                     <ButtonAddFavoriteList
                                           idProvider={this.props.match.params.idProvider}
