@@ -11,8 +11,6 @@ export default class AnnouncementList extends Component {
             apiHandler
                   .getAnnouncementsByAuthor(this.props.idUser)
                   .then(data => {
-
-                        console.log(data)
                         this.setState({ list: data })
                   })
                   .catch(err => console.log(err))
@@ -26,7 +24,7 @@ export default class AnnouncementList extends Component {
                   .catch(err => console.log(err))
       }
       render() {
-            console.log(this.state.list.length === 0)
+            
             return (
                   <table style={{ backgroundColor: "pink" }}>
                         <thead>
@@ -56,8 +54,8 @@ export default class AnnouncementList extends Component {
                                                             }
                                                       </ul>
                                                 </td>
-                                                <td><NavLink to={`/announcements/edit/${ann._id}`}>Edit</NavLink></td>
-                                                <td><button onClick={e => this.handleDelete(ann._id)}>Delete</button></td>
+                                                <td><NavLink to={`/announcements/edit/${ann._id}`}><i className="fas fa-edit"></i></NavLink></td>
+                                                <td><button onClick={e => this.handleDelete(ann._id)}><i className="fas fa-trash-alt"></i></button></td>
                                           </tr>
                                     )
                               }

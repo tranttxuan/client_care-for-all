@@ -51,6 +51,12 @@ export default {
                   .catch(errorHandler);
       },
 
+      getProfile() {
+            return service
+                  .get("/auth/profile")
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
       //*******/ 
       // Announcement
       //*******/ 
@@ -112,11 +118,25 @@ export default {
                   .catch(errorHandler);
       },
 
-      getOneProvider(idProvider, limit){
+      getOneProvider(idProvider, limit) {
             return service
-            .get(`/providers/one/${idProvider}?limit=${limit}`)
-            .then((res) => res.data)
-            .catch(errorHandler);
-      }
+                  .get(`/providers/one/${idProvider}?limit=${limit}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      //Send a booking request
+      sendBookingRequest(idProvider) {
+            return service
+                  .post(`/providers/booking/${idProvider}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      cancelBookingRequest(idProvider) {
+            return service
+                  .post(`/providers/no-booking/${idProvider}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      //USER
 
 };

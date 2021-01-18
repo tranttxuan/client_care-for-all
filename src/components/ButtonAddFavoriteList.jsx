@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import apiHandler from '../api/apiHandler';
+import UserContext from './Auth/UserContext';
 
 export default class ButtonAddFavoriteList extends Component {
-    
+      static contextType = UserContext;
       state = {
-            isFavorite: false,
+            isFavorite:false
       }
       componentDidMount() {
             if (this.props.isAdded) {
+                  console.log("check-----is in list")
                   this.setState({ isFavorite: true })
             }
       }
@@ -16,10 +18,17 @@ export default class ButtonAddFavoriteList extends Component {
             // const idProvider = this.props.match.params.idProvider;
             const idProvider = this.props.idProvider
 
+            // const data = this.context.user;
+
+
             if (!this.state.isFavorite === true) {
                   apiHandler
                         .addToFavoriteList(idProvider)
-                        .then(response => { console.log(response) })
+                        .then(response => {
+                              console.log(response)
+                              // data.favoriteProviders.push(idProvider);
+                              // this.context.setUser(data);
+                        })
                         .catch(err => {
                               console.log(err.message)
                               this.setState({ isFavorite: false })
@@ -33,6 +42,7 @@ export default class ButtonAddFavoriteList extends Component {
             }
       }
       render() {
+
             return (
                   <Fragment>
                         <button onClick={this.addToFavorite}>

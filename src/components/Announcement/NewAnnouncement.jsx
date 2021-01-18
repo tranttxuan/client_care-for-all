@@ -128,7 +128,8 @@ class NewAnnouncement extends Component {
 
                                     <div className="form-group">
                                           <label className='label' htmlFor="description">Description</label>
-                                          <input
+                                          <textarea
+                                                rows="10"
                                                 id="description"
                                                 type="text"
                                                 name="description"

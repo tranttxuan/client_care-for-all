@@ -9,6 +9,7 @@ import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 import ReviewCard from '../components/ReviewCard';
 import { getAge } from '../utils';
+import ButtonBookingRequest from './ButtonBookingRequest';
 
 class OneProvider extends Component {
       static contextType = UserContext;
@@ -18,10 +19,12 @@ class OneProvider extends Component {
             seeMore: false
       }
       getData = (limit) => {
-            // console.log("check", this.props.match.params.idProvider)
             apiHandler
                   .getOneProvider(this.props.match.params.idProvider, limit)
-                  .then(data => { this.setState({ provider: data[0] }) })
+                  .then(data => {
+                        // console.log("fetch data", data)
+                        this.setState({ provider: data[0] })
+                  })
                   .catch(err => console.log(err.message))
       }
       componentDidMount() {
@@ -36,26 +39,25 @@ class OneProvider extends Component {
             this.getData(100);
             this.setState({ seeMore: true })
       }
-      requestBooking = () => {
-
-      }
 
       render() {
             const { provider, seeMore } = this.state;
             if (provider) {
-                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location } = provider
+                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, favoriteProviders } = provider;
+
                   let age = '';
-                  if (provider) {
-                        if (provider.birthday) {
-                              age = getAge(provider.birthday)
-                        }
+                  if (provider.birthday) {
+                        age = getAge(provider.birthday)
                   }
-                  // console.log(location.coordinates[1])
+
                   //if this provider is in the current user's favorite list 
                   let isInFavList = false;
+
                   if (this.context.user) {
+                        console.log("here")
                         if (this.context.user.favoriteProviders.includes(this.props.match.params.idProvider)) {
                               isInFavList = true;
+                              console.log("here1")
                         }
                   }
 
@@ -71,7 +73,7 @@ class OneProvider extends Component {
 
                                     <ButtonAddFavoriteList
                                           idProvider={this.props.match.params.idProvider}
-                                          isAdded={isInFavList && true}
+                                          isAdded={isInFavList}
                                     />
                               </div>
 
@@ -122,7 +124,7 @@ class OneProvider extends Component {
                               <br></br>
                               <div className="block">
                                     <button>Contact</button>
-                                    <button onClick={this.requestBooking}>Booking</button>
+                                    <ButtonBookingRequest booking="true" idProvider={this.props.match.params.idProvider} />
                               </div>
 
 

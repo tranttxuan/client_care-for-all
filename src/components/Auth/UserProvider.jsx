@@ -24,7 +24,7 @@ export default class UserProvider extends Component {
                         this.setState({ user: null, isLoggedIn: false, isLoading: true });
                         setTimeout(() => {
                               this.setState({ isLoading: false });
-                        }, 5000);
+                        }, 3000);
                   })
                   .catch(err => console.log(err))
       }
