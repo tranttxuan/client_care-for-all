@@ -13,11 +13,9 @@ export default class ButtonAddFavoriteList extends Component {
             this.setState({ isFavorite: !this.state.isFavorite });
             const idProvider = this.props.idProvider;
             if (!this.isFavorited()) {
-                  // console.log("clicked")
                   apiHandler
                         .addToFavoriteList(idProvider)
                         .then(response => {
-                              console.log(response.message)
                               if (response.message === "Of course you are in your favorite list!") {
                                     this.setState({ message: "It's you!" })
                                     setTimeout(() => {

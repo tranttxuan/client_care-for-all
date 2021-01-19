@@ -55,7 +55,7 @@ class MapSearch extends Component {
             if (this.props.list) {
                   List = this.props.list;
             }
-            if(this.props.search.coordinates){
+            if(this.props.search){
                   Search = this.props.search.coordinates
             }
           

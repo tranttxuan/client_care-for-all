@@ -3,12 +3,13 @@ import { NavLink, withRouter } from 'react-router-dom';
 import apiHandler from '../api/apiHandler';
 import UserContext from '../components/Auth/UserContext';
 import ButtonAddFavoriteList from '../components/ButtonAddFavoriteList';
+import ButtonBookingRequest from '../components/ButtonBookingRequest';
 import Carousel from '../components/Carousel';
 import MapSearch from '../components/Map/MapSearch';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 import { getAge } from '../utils';
-import ButtonBookingRequest from './ButtonBookingRequest';
+
 
 class OneProvider extends Component {
       static contextType = UserContext;
@@ -21,7 +22,7 @@ class OneProvider extends Component {
             apiHandler
                   .getOneProvider(this.props.match.params.idProvider, limit)
                   .then(data => {
-                        // console.log("fetch data", data)
+                        console.log("fetch data", data)
                         this.setState({ provider: data[0] })
                   })
                   .catch(err => console.log(err.message))
@@ -42,8 +43,8 @@ class OneProvider extends Component {
       render() {
             const { provider, seeMore } = this.state;
             if (provider) {
-                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location} = provider;
-                  // console.log("reviews", reviews.length === 0)
+                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList} = provider;
+                  console.log("reviews", bookingList)
                   let age = '';
                   if (provider.birthday) {
                         age = getAge(provider.birthday)
@@ -121,7 +122,7 @@ class OneProvider extends Component {
                               <br></br>
                               <div className="block">
                                     <button>Contact</button>
-                                    <ButtonBookingRequest booking="true" idProvider={this.props.match.params.idProvider} />
+                                    <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
                               </div>
 
 

@@ -48,9 +48,9 @@ export default class Dashboard extends Component {
                                     <br></br>
                                     <br></br>
                                     <div style={{ display: 'flex', flexDirection: "column" }}>
-                                          <h1>You want to find a care provider?</h1>
+                                          <h1>DO you want to find a care provider?</h1>
                                           <div className="block">
-                                                <h2>List of announcement</h2>
+                                                <h2>Announcement list</h2>
                                                 <NavLink to="/announcements/new">Add new</NavLink>
                                                 <AnnouncementList idUser={_id} />
                                           </div>
@@ -61,9 +61,9 @@ export default class Dashboard extends Component {
                                           </div>
 
                                           <br></br>
-                                          <h1>You want to find a job?</h1>
+                                          <h1>Do you want to find a job?</h1>
                                           <div className="block">
-                                                <h2>Booking list</h2>
+                                                <h2>You received booking requests</h2>
                                                 <FavoriteOrBookingList list={bookingList} isFavList="false" />
                                           </div>
 

@@ -30,3 +30,13 @@ export function buildFormData(formData, data, parentKey) {
 }
 
 
+export function averageRates(reviews) {
+  let i = 0;
+  let sum = 0;
+  if (reviews) {
+    reviews.forEach(review => {
+      if (review.rate) { sum += review.rate; i++ }
+    })
+    return Math.floor(sum/i)
+  }
+}

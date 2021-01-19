@@ -38,17 +38,6 @@ class Rating extends Component {
                   <div>
                         {!inReviewCard && <h3>Star Rating</h3>}
                         <div style={{ display: 'flex' }}>
-                              {/* {(inReviewCard ? rateInCard : stars)
-                                    .map((star, index) => {
-                                          return (
-                                                <Star
-                                                      key={index}
-                                                      startId={index}
-                                                      rating={rating}
-                                                      onClick={() => this.onClick(index)}
-                                                />
-                                          )
-                                    })} */}
 
                               {inReviewCard
                                     ? rateInCard.map((star, index) => {
