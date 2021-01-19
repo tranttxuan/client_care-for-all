@@ -4,14 +4,12 @@ import apiHandler from '../../../api/apiHandler'
 
 export default class FavoriteOrBookingList extends Component {
       state = {
-            // list: null,
-            // isFavList: false,
             list: [],
             isFavList: false,
 
       }
       componentDidMount() {
-            console.log("favoriteList")
+
             this.setState({
                   list: this.props.list,
                   isFavList: this.props.isFavList,
@@ -51,36 +49,38 @@ export default class FavoriteOrBookingList extends Component {
                                     <th>Delete</th>
                                     <th>Contact</th>
                               </tr>
-
                         </thead>
 
                         <tbody>
-
                               {this.state.list.map((provider, i) => (
                                     <tr key={i}>
-                                          {this.state.isFavList === "true"
-                                                ? (
-
-                                                      <NavLink
-                                                            to={this.state.isFavList === "true" && `/provider/${provider._id}`}>
-                                                            <td>  <img src={provider.image} /></td>
-                                                            <td> {provider.firstName} {provider.lastName}</td>
+                                          <td>
+                                                {this.state.isFavList === "true" ?
+                                                      <NavLink to={`/provider/${provider._id}`}>
+                                                            <img src={provider.image} />
                                                       </NavLink>
+                                                      : <img src={provider.image} />
+                                                }
 
-                                                )
-                                                : (
-                                                      <Fragment>
-                                                            <td>  <img src={provider.image} /></td>
-                                                            <td> {provider.firstName} {provider.lastName}</td>
-                                                      </Fragment>
+                                          </td>
+                                          <td>
+                                                {this.state.isFavList === "true" ?
+                                                      <NavLink to={`/provider/${provider._id}`}>
+                                                            {provider.firstName} {provider.lastName}
+                                                      </NavLink>
+                                                      : <p> {provider.firstName} {provider.lastName}</p>
+                                                }
 
-                                                )
-                                          }
+
+                                          </td>
+
 
                                           <td><button onClick={e => this.handleDelete(provider._id)}><i className="fas fa-trash-alt"></i></button></td>
                                           <td>Message <i className="fas fa-envelope"></i></td>
 
                                     </tr>
+
+
                               ))}
 
 

@@ -4,7 +4,7 @@ import apiHandler from '../api/apiHandler';
 import UserContext from '../components/Auth/UserContext';
 import ButtonAddFavoriteList from '../components/ButtonAddFavoriteList';
 import Carousel from '../components/Carousel';
-import MapInCard from '../components/Map/MapInCard';
+import MapSearch from '../components/Map/MapSearch';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 import { getAge } from '../utils';
@@ -43,20 +43,17 @@ class OneProvider extends Component {
             const { provider, seeMore } = this.state;
             if (provider) {
                   const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, favoriteProviders } = provider;
-
+                  // console.log("reviews", reviews.length === 0)
                   let age = '';
                   if (provider.birthday) {
                         age = getAge(provider.birthday)
                   }
-
                   //if this provider is in the current user's favorite list 
                   let isInFavList = false;
 
                   if (this.context.user) {
-                        console.log("here")
                         if (this.context.user.favoriteProviders.includes(this.props.match.params.idProvider)) {
                               isInFavList = true;
-                              console.log("here1")
                         }
                   }
 
@@ -91,9 +88,9 @@ class OneProvider extends Component {
 
                                     <div className="block">
                                           <h2>Service offer:</h2>
-                                          <Services defaultValue={service} />
+                                          <Services defaultValue={service} editable="false" />
                                           <h2>I'm comfortable with:</h2>
-                                          <OtherServices defaultValue={additionalServices} />
+                                          <OtherServices defaultValue={additionalServices} editable="false" />
                                     </div>
 
                                     <div className="block">
@@ -107,16 +104,16 @@ class OneProvider extends Component {
                                     </div>
 
                                     <div className="block">
-                                          <h2>Reviews</h2> {!seeMore && <button onClick={this.seeMore}>more reviews</button>}
-                                          <Carousel reviews={reviews} />
+                                          <h2>Reviews</h2>
+                                          {(!seeMore && reviews.length !== 0) && <button onClick={this.seeMore}>more reviews</button>}
+                                          {reviews.length !== 0 ? <Carousel reviews={reviews} /> : <p>0 reviews</p>}
+
                                     </div>
 
                                     {location.coordinates.length !== 0 && <div className="block">
                                           <h2>Location</h2>
-                                          <MapInCard
-                                                lat={location.coordinates[0]}
-                                                lng={location.coordinates[1]}
-                                          />
+                                        
+                                          <MapSearch list={location}/>
                                     </div>}
                               </div>
                               <br></br>

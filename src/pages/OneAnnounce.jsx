@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import apiHandler from '../api/apiHandler';
 import ApplyJob from '../components/ApplyJob';
-import MapInCard from '../components/Map/MapInCard';
+import MapSearch from '../components/Map/MapSearch';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 
@@ -17,11 +17,13 @@ class OneAnnounce extends Component {
                   .catch(err => console.log(err))
 
       }
+
       render() {
             console.log("check", this.state.announcement)
             if (this.state.announcement) {
-                  const {_id, author, service, additionalServices, title, description, location } = this.state.announcement;
+                  const { _id, author, service, additionalServices, title, description, location, applicants } = this.state.announcement;
                   const { firstName, lastName, image } = author;
+
                   return (
                         <div>
                               <div className="block">
@@ -39,18 +41,21 @@ class OneAnnounce extends Component {
 
                               <div className="block">
                                     <h2>Requires</h2>
-                                    <Services defaultValue={service} />
-                                    <OtherServices defaultValue={additionalServices} />
+                                    <Services
+                                          defaultValue={service}
+                                          editable="false"
+                                    />
+                                    <OtherServices defaultValue={additionalServices} editable="false" />
                               </div>
 
                               <div className="block">
-                                    <MapInCard />
+                                    <MapSearch  />
                               </div>
                               <br></br>
                               <br></br>
                               <div className="block">
                                     <button>Contact me</button>
-                                    <ApplyJob id={_id}/>
+                                    <ApplyJob id={_id} applicants={applicants} />
                               </div>
                         </div>
 

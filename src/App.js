@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Route, Switch } from "react-router-dom";
-import EditAnnouncement from './components/Announcement/EditAnnouncement';
 import NewAnnouncement from './components/Announcement/NewAnnouncement';
 import ProtectRoute from './components/Auth/ProtectRoute';
 import NavMain from './components/NavMain/NavMain';
 import AddReview from './pages/AddReview';
+import Announcements from './pages/Announcements';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import OneAnnounce from './pages/OneAnnounce';
 import OneProvider from './pages/OneProvider';
 import Profile from './pages/Profile';
+import Providers from './pages/Providers';
 import Signup from './pages/Signup';
 
 
@@ -32,10 +33,12 @@ export default class App extends Component {
           {/* Announcement  */}
           <ProtectRoute exact path="/announcements/new" component={NewAnnouncement} />
           <ProtectRoute exact path="/announcements/edit/:idPost" component={NewAnnouncement} />
+          <Route exact path="/announcements/:service/s" component={Announcements} />
           <Route exact path="/announcements/:idAnnouncement" component={OneAnnounce} />
 
 
           {/* Provider  */}
+          <Route exact path="/providers/:service/s" component={Providers} />
           <Route exact path="/provider/:idProvider" component={OneProvider} />
           <ProtectRoute exact path="/provider/:idProvider/review" component={AddReview} />
         </Switch>

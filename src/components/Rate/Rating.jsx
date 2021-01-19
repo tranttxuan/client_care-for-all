@@ -33,7 +33,7 @@ class Rating extends Component {
             for (let i = 1; i < rating + 1; i++) {
                   rateInCard.push(i)
             }
-            console.log("youre there", inReviewCard)
+     
             return (
                   <div>
                         {!inReviewCard && <h3>Star Rating</h3>}

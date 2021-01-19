@@ -5,29 +5,28 @@ import UserContext from './Auth/UserContext';
 export default class ButtonAddFavoriteList extends Component {
       static contextType = UserContext;
       state = {
-            isFavorite:false
+            isFavorite: false,
+            message: ''
       }
-      componentDidMount() {
-            if (this.props.isAdded) {
-                  console.log("check-----is in list")
-                  this.setState({ isFavorite: true })
-            }
-      }
+
       addToFavorite = () => {
             this.setState({ isFavorite: !this.state.isFavorite });
-            // const idProvider = this.props.match.params.idProvider;
-            const idProvider = this.props.idProvider
-
-            // const data = this.context.user;
-
-
-            if (!this.state.isFavorite === true) {
+            const idProvider = this.props.idProvider;
+            if (!this.isFavorited()) {
+                  // console.log("clicked")
                   apiHandler
                         .addToFavoriteList(idProvider)
                         .then(response => {
-                              console.log(response)
-                              // data.favoriteProviders.push(idProvider);
-                              // this.context.setUser(data);
+                              console.log(response.message)
+                              if (response.message === "Of course you are in your favorite list!") {
+                                    this.setState({ message: "It's you!" })
+                                    setTimeout(() => {
+                                          this.setState({ message: "" })
+                                    }, 5000);
+                              } else {
+                                    this.context.setUser(response)
+                              }
+
                         })
                         .catch(err => {
                               console.log(err.message)
@@ -37,19 +36,28 @@ export default class ButtonAddFavoriteList extends Component {
                   apiHandler.takeOffFavoriteList(idProvider)
                         .then(response => {
                               console.log(response)
+                              this.context.setUser(response)
                         })
                         .catch(err => { console.log(err.message) })
             }
       }
+
+
+      isFavorited = () => {
+            return this.context.user?.favoriteProviders.includes(this.props.idProvider)
+      }
+
+
       render() {
 
             return (
                   <Fragment key={this.props.isAdded}>
                         <button onClick={this.addToFavorite}>
-                              {this.state.isFavorite
-                                    ? <i className="fas fa-heart" style={{ color: "red" }} />
+                              {this.isFavorited() ?
+                                    <i className="fas fa-heart" style={{ color: "red" }} />
                                     : <i className="far fa-heart solid" />}
                         </button>
+                        {this.state.message && <p>{this.state.message}</p>}
                   </Fragment>
             )
       }

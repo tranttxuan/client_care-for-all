@@ -35,7 +35,7 @@ function NavMain(props) {
                               </React.Fragment>
                         )}
 
-                        {!context.isLoggedIn && (
+                        {!context.isLoggedIn&& (
                               <React.Fragment>
                                     <li><NavLink to="/signup">Sign up</NavLink> </li>
                                     <li><NavLink to="/login">Log in</NavLink></li>

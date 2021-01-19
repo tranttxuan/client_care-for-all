@@ -9,8 +9,13 @@ export default class OtherServices extends Component {
       }
       handleChange = (event) => {
             const { name, checked } = event.target
-            this.setState({ [name]: checked })
-            this.props.handleServices(name, checked);
+            if (this.props.editable === "false") {
+                  this.setState({ [name]: this.state.[name] })
+            } else {
+                  this.setState({ [name]: checked })
+                  this.props.handleServices(name, checked);
+            }
+
       }
       componentDidMount() {
             if (this.props.defaultValue) {
@@ -33,7 +38,7 @@ export default class OtherServices extends Component {
                               />
 
                               <label className='label' htmlFor="shoppingAndErrands">Shopping And Errands</label>
-                              <input 
+                              <input
                                     id="shoppingAndErrands"
                                     type="checkbox"
                                     name="shoppingAndErrands"

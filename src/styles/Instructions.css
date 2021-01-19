@@ -1,0 +1,51 @@
+.home__instructions {
+      padding: 2% 10%;
+min-height: 16rem;
+}
+
+.card {}
+
+.home__instructions {
+      position: relative;
+}
+
+.home__instructions>div {
+      animation: 12s autoPlay infinite linear;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+}
+
+.home__instructions>div:nth-child(1) {
+      animation-delay: 0s
+}
+
+.home__instructions>div:nth-child(2) {
+      animation-delay: 6s
+}
+
+@keyframes autoPlay {
+      0% {
+            opacity: 0.0
+      }
+
+      5% {
+            opacity: 1.0
+      }
+
+      30% {
+            opacity: 1.0
+      }
+
+      60% {
+            opacity: 0.0
+      }
+
+      100% {
+            opacity: 0.0
+      }
+}
+
+
+.home__instructions-find {}

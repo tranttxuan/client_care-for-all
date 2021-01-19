@@ -8,13 +8,18 @@ export default class Services extends Component {
       }
       handleChange = (event) => {
             const { name, checked } = event.target
-            this.setState({ [name]: checked })
-            this.props.handleServices(name, checked);
+            if (this.props.editable === "false") {
+                  this.setState({ [name]: this.state.[name] })
+            } else {    
+                  this.setState({ [name]: checked })
+                  this.props.handleServices(name, checked);
+            }
+
       }
       componentDidMount() {
             if (this.props.defaultValue) {
                   const { childCare, seniorCare, petCare } = this.props.defaultValue
-                  this.setState({ childCare:childCare, seniorCare:seniorCare, petCare:petCare })
+                  this.setState({ childCare: childCare, seniorCare: seniorCare, petCare: petCare })
             }
       }
       render() {

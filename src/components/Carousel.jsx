@@ -10,18 +10,16 @@ export default class Carousel extends Component {
       goToSlide = (index) => {
             this.setState({ activeIndex: index });
       }
-
+  
       goToPrevSlide = (e) => {
             e.preventDefault();
 
             let index = this.state.activeIndex;
-            let { reviews } = this.props;
-            let slidesLength = reviews.length;
+            let slidesLength = this.props.reviews.length;
 
             if (index < 1) {
                   index = slidesLength;
             }
-
             --index;
 
             this.setState({
@@ -33,19 +31,16 @@ export default class Carousel extends Component {
             e.preventDefault();
 
             let index = this.state.activeIndex;
-            let { reviews } = this.props;
-            let slidesLength = reviews.length - 1;
+            let slidesLength = this.props.reviews.length - 1;
 
             if (index === slidesLength) {
                   index = -1;
             }
-
             ++index;
 
-            this.setState({
-                  activeIndex: index
-            });
+            this.setState({ activeIndex: index });
       }
+      
 
       render() {
             return (
@@ -68,15 +63,15 @@ export default class Carousel extends Component {
                                           }
                                           key={index}
                                     >
-                                        
+
                                           <ReviewCard
-                                          className="carousel-slide__content"
+                                                className="carousel-slide__content"
                                                 key={index}
                                                 review={review.review}
                                                 name={review.sender.firstName}
                                                 rate={review.rate}
                                           />
-                                     
+
                                     </li>
                               )}
                         </ul>

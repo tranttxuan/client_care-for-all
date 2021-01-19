@@ -91,9 +91,23 @@ export default {
                   .catch(errorHandler);
       },
 
+      getAnnouncementsByService(type) {
+            return service
+                  .get(`/announcements/${type}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
       applyForJob(id) {
             return service
                   .post(`/announcements/apply/${id}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
+      cancelApplication(id) {
+            return service
+                  .post(`/announcements/no-apply/${id}`)
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
@@ -116,6 +130,12 @@ export default {
                   .post(`/web-reviews`, data)
                   .then((res) => res.data)
                   .catch(errorHandler);
+      },
+      getWebReview(){
+            return service
+            .get(`/web-reviews`)
+            .then((res) => res.data)
+            .catch(errorHandler);
       },
 
 
@@ -162,6 +182,13 @@ export default {
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
+      getProvidersByService(type) {
+            return service
+                  .get(`/providers/${type}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+
       //USER
 
 };

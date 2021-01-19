@@ -48,7 +48,7 @@ export default class AnnouncementList extends Component {
                                                       <ul>
                                                             {ann.applicants.map(((applicant, idApp) => {
                                                                   return (
-                                                                        <li><NavLink to="/">{applicant.lastName}</NavLink></li>
+                                                                        <li key={idApp}><NavLink to={`/provider/${applicant._id}`}>{applicant.lastName}</NavLink></li>
                                                                   )
                                                             }))
                                                             }
@@ -60,7 +60,7 @@ export default class AnnouncementList extends Component {
                                     )
                               }
                               )}
-                              {this.state.list.length === 0 && <tr><th colSpan="5">Empty list</th></tr>}
+                              {this.state.list.length === 0 && <tr key={0}><th colSpan="5">Empty list</th></tr>}
 
                         </tbody>
                   </table>
