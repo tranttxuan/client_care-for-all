@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const service = axios.create({
-      baseURL: 'http://localhost:4000/api',
-      // baseURL: process.env.REACT_APP_BACKEND_URL + 'api',
+      // baseURL: 'http://localhost:4000/api',
+      baseURL: process.env.REACT_APP_BACKEND_URL + '/api',
       withCredentials: true,
 });
 
@@ -131,11 +131,11 @@ export default {
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
-      getWebReview(){
+      getWebReview() {
             return service
-            .get(`/web-reviews`)
-            .then((res) => res.data)
-            .catch(errorHandler);
+                  .get(`/web-reviews`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
       },
 
 

@@ -40,7 +40,7 @@ export default class Dashboard extends Component {
                               <h1>Dashboard</h1>
                               <div>
                                     <div className="dashboard__information">
-                                          <img src={image} className="image" />
+                                          <img src={image} className="image" alt="profile"/>
                                           <p><em>Name : </em>{firstName} <strong>{lastName}</strong></p>
                                           <p><em>Age: </em>{age}</p>
                                           <p><em>Address : </em>{formattedAddress}</p>

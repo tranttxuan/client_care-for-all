@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import apiHandler from '../../api/apiHandler'
+
 
 class Banner extends Component {
       state = {

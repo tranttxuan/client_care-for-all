@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 export default class Services extends Component {
       state = {
-            childCare: false,
-            seniorCare: false,
-            petCare: false
+            childCare: "",
+            seniorCare: "",
+            petCare: ""
       }
       handleChange = (event) => {
             const { name, checked } = event.target
@@ -14,7 +14,7 @@ export default class Services extends Component {
                   this.setState({ [name]: checked })
                   this.props.handleServices(name, checked);
             }
-
+ 
       }
       componentDidMount() {
             if (this.props.defaultValue) {
@@ -23,8 +23,9 @@ export default class Services extends Component {
             }
       }
       render() {
+            console.log(this.state)
             return (
-                  <Fragment>
+                  <div>
                         <label className='label' htmlFor="childCare">Child care</label>
                         <input
                               id="childCare"
@@ -51,7 +52,7 @@ export default class Services extends Component {
                               onChange={this.handleChange}
                               checked={this.state.petCare}
                         />
-                  </Fragment>
+                  </div>
             )
       }
 }

@@ -45,19 +45,19 @@ export default class Carousel extends Component {
       render() {
             return (
                   <div className="carousel">
-                        <a
-                              href="#"
+                        <button
+                              
                               className="carousel__arrow carousel__arrow--left"
                               onClick={e => this.goToPrevSlide(e)}
                         >
                               <i className="fas fa-angle-left"></i>
-                        </a>
+                        </button>
 
                         <ul className="carousel__slides">
                               {this.props.reviews.map((review, index) =>
                                     <li
                                           className={
-                                                index == this.state.activeIndex
+                                                index === this.state.activeIndex
                                                       ? "carousel__slide carousel__slide--active"
                                                       : "carousel__slide"
                                           }
@@ -76,20 +76,19 @@ export default class Carousel extends Component {
                               )}
                         </ul>
 
-                        <a
-                              href="#"
+                        <button
                               className="carousel__arrow carousel__arrow--right"
                               onClick={e => this.goToNextSlide(e)}
                         >
                               <i className="fas fa-angle-right"></i>
-                        </a>
+                        </button>
 
                         <ul className="carousel__indicators">
                               {this.props.reviews.map((slide, index) =>
                                     <li key={index}>
-                                          <a
+                                          <button
                                                 className={
-                                                      index == this.state.activeIndex
+                                                      index === this.state.activeIndex
                                                             ? "carousel__indicator carousel__indicator--active"
                                                             : "carousel__indicator"
                                                 }

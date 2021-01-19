@@ -25,7 +25,7 @@ class NewAnnouncement extends Component {
       componentDidMount() {
 
             if (this.props.match.params.idPost) {
-                  this.setState({ isEditPage: true, displayMessage: false, service: { childCare: true } })
+                  this.setState({ isEditPage: true, displayMessage: false,  })
                   apiHandler.getOneAnnouncement(this.props.match.params.idPost)
                         .then(data => {
                               const { title, description, formattedAddress, service, additionalServices, time } = data;
@@ -46,6 +46,7 @@ class NewAnnouncement extends Component {
             this.setState({ location, formattedAddress })
       }
       handleServices = (name, checked) => {
+            console.log("service", name, checked)
             this.setState({ service: { ...this.state.service, [name]: checked } })
       }
       handleAdditionalServices = (name, checked) => {
@@ -77,7 +78,7 @@ class NewAnnouncement extends Component {
       render() {
             const { error, displayMessage, idPost, isEditPage, ...states } = this.state
             const { service, time, title, description, additionalServices, formattedAddress } = states;
-
+console.log("value", service, additionalServices)
             return (
                   <Fragment>
                         {error && <p>error</p>}
@@ -142,9 +143,9 @@ class NewAnnouncement extends Component {
                               <div className="block">
                                     <div className="form-group">
                                           <label className='label' htmlFor="formattedAddress">Address</label>
-                                          <AutocompletePlace
-                                                onSelect={this.handlePlace}
-                                                defaultValue={formattedAddress} />
+                                          {this.props.match.params.idPost
+                                                && <p>Your current address: {formattedAddress}</p>}
+                                          <AutocompletePlace onSelect={this.handlePlace} />
                                     </div>
 
 

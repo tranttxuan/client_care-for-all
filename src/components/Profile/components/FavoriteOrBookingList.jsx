@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component} from 'react'
 import { NavLink } from 'react-router-dom'
 import apiHandler from '../../../api/apiHandler'
 
@@ -57,9 +57,9 @@ export default class FavoriteOrBookingList extends Component {
                                           <td>
                                                 {this.state.isFavList === "true" ?
                                                       <NavLink to={`/provider/${provider._id}`}>
-                                                            <img src={provider.image} />
+                                                            <img src={provider.image} alt={provider.firstName}/>
                                                       </NavLink>
-                                                      : <img src={provider.image} />
+                                                      : <img src={provider.image} alt={provider.firstName} />
                                                 }
 
                                           </td>

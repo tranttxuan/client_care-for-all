@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Star from './Star';
 import "../../styles/Review.css"
 import { withRouter } from 'react-router-dom';

@@ -10,7 +10,7 @@ export default class OtherServices extends Component {
       handleChange = (event) => {
             const { name, checked } = event.target
             if (this.props.editable === "false") {
-                  this.setState({ [name]: this.state.[name] })
+                  this.setState({ [name]: this.state.name })
             } else {
                   this.setState({ [name]: checked })
                   this.props.handleServices(name, checked);

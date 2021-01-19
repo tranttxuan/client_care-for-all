@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
 import "../styles/PopUp.css";
 
 function PopUp({ message,btnOne, btnTwo, handleBtnOne, handleBtnTwo }) {

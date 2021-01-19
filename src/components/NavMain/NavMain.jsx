@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import apiHandler from '../../api/apiHandler';
 import withUser from "../Auth/withUser"
 import "../../styles/NavMain.css";
 
@@ -10,6 +9,7 @@ function NavMain(props) {
       const handleLogout = () => {
             context.removeUser();
       }
+
       return (
 
 

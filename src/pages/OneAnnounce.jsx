@@ -10,6 +10,7 @@ class OneAnnounce extends Component {
       state = {
             announcement: null,
       }
+
       componentDidMount() {
             console.log(this.props.match.params.idAnnouncement)
             apiHandler.getOneAnnouncement(this.props.match.params.idAnnouncement)
@@ -19,16 +20,16 @@ class OneAnnounce extends Component {
       }
 
       render() {
-            console.log("check", this.state.announcement)
+          
             if (this.state.announcement) {
                   const { _id, author, service, additionalServices, title, description, location, applicants } = this.state.announcement;
                   const { firstName, lastName, image } = author;
-
+                  console.log("check", location)
                   return (
                         <div>
                               <div className="block">
                                     <div style={{ display: 'flex' }}>
-                                          <img src={image} />
+                                          <img src={image} alt={firstName}/>
                                           <p>Hello, my name is {lastName} {firstName}</p>
                                     </div>
 
@@ -49,7 +50,7 @@ class OneAnnounce extends Component {
                               </div>
 
                               <div className="block">
-                                    <MapSearch  />
+                                    <MapSearch  user={location}/>
                               </div>
                               <br></br>
                               <br></br>

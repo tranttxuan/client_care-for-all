@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import apiHandler from '../api/apiHandler';
 import ApplyJob from '../components/ApplyJob';
 import UserContext from '../components/Auth/UserContext';
+import Autocomplete from '../components/Map/AutoComplete';
 import MapSearch from '../components/Map/MapSearch';
 
 
@@ -10,6 +11,7 @@ export default class Announcements extends Component {
       static contextType = UserContext;
       state = {
             list: [],
+            searchCoordinates: []
 
       }
       componentDidMount() {
@@ -18,10 +20,24 @@ export default class Announcements extends Component {
                   .then(data => this.setState({ list: data }))
                   .catch(err => console.log(err))
       }
+      handleSelect = (place) => {
+            this.setState({ searchCoordinates: place.geometry })
+      }
       render() {
             return (
                   <div>
-                        <div>Search bar</div>
+                          <div>
+                              <h3>Find jobs near by your location</h3>
+                              <Autocomplete onSelect={this.handleSelect} />
+                        </div>
+                        <div>
+                              <MapSearch
+                                    list={this.state.list}
+                                    search={this.state.searchCoordinates && this.state.searchCoordinates} 
+
+                                    />
+                        </div>
+                        
                         <div>
                               {this.state.list.map(({ _id, title, time, description, applicants }, i) => (
                                     <div key={i} className="block">
@@ -41,9 +57,6 @@ export default class Announcements extends Component {
                               ))}
                         </div>
 
-                        <div>
-                              <MapSearch list={this.state.list}/>
-                        </div>
                   </div>
             )
       }

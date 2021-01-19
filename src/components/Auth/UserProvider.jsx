@@ -15,7 +15,10 @@ export default class UserProvider extends Component {
                   .then(data => {
                         this.setState({ user: data, isLoggedIn: true, isLoading: false })
                   })
-                  .catch(error => this.setState({ isLoading: false }))
+                  .catch(error => {
+                        console.log(error);
+                        this.setState({ isLoading: false })
+                  })
       }
 
       removeUser = () => {

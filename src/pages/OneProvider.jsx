@@ -42,7 +42,7 @@ class OneProvider extends Component {
       render() {
             const { provider, seeMore } = this.state;
             if (provider) {
-                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, favoriteProviders } = provider;
+                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location} = provider;
                   // console.log("reviews", reviews.length === 0)
                   let age = '';
                   if (provider.birthday) {
@@ -113,7 +113,7 @@ class OneProvider extends Component {
                                     {location.coordinates.length !== 0 && <div className="block">
                                           <h2>Location</h2>
                                         
-                                          <MapSearch list={location}/>
+                                          <MapSearch user={location}/>
                                     </div>}
                               </div>
                               <br></br>

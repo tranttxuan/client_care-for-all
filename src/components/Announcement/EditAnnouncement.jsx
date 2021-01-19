@@ -6,6 +6,7 @@ import AutocompletePlace from '../Map/AutoComplete';
 import PopUp from '../PopUp';
 import OtherServices from '../Profile/components/OtherServices';
 import Services from '../Profile/components/Services';
+
 class EditAnnouncement extends Component {
       static contextType = UserContext;
       state = {
