@@ -5,6 +5,7 @@ import ApplyJob from '../components/ApplyJob';
 import UserContext from '../components/Auth/UserContext';
 import Autocomplete from '../components/Map/AutoComplete';
 import MapSearch from '../components/Map/MapSearch';
+import FormMessage from '../components/Message/FormMessage';
 
 
 export default class Announcements extends Component {
@@ -26,20 +27,20 @@ export default class Announcements extends Component {
       render() {
             return (
                   <div>
-                          <div>
+                        <div>
                               <h3>Find jobs near by your location</h3>
                               <Autocomplete onSelect={this.handleSelect} />
                         </div>
                         <div>
                               <MapSearch
                                     list={this.state.list}
-                                    search={this.state.searchCoordinates && this.state.searchCoordinates} 
+                                    search={this.state.searchCoordinates && this.state.searchCoordinates}
 
-                                    />
+                              />
                         </div>
-                        
+
                         <div>
-                              {this.state.list.map(({ _id, title, time, description, applicants }, i) => (
+                              {this.state.list.map(({ _id, title, time, description, applicants, author }, i) => (
                                     <div key={i} className="block">
                                           <NavLink to={`/announcements/${_id}`} >
                                                 <h3>{title}</h3>
@@ -48,7 +49,9 @@ export default class Announcements extends Component {
                                           </NavLink>
                                           <div>
                                                 <ApplyJob id={_id} applicants={applicants} />
-                                                <button>Contact</button>
+
+                                                <FormMessage idAnnouncement={_id} idReceiver={author} title={title} />
+
                                           </div>
 
 

@@ -189,6 +189,14 @@ export default {
                   .catch(errorHandler);
       },
 
-      //USER
+      //*******/ 
+      // Message
+      //*******/
+      sendMessage(data) {
+            return service
+                  .post("/messages",data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
 
 };

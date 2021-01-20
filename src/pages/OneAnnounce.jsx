@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import apiHandler from '../api/apiHandler';
 import ApplyJob from '../components/ApplyJob';
 import MapSearch from '../components/Map/MapSearch';
+import FormMessage from '../components/Message/FormMessage';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 
@@ -20,7 +21,7 @@ class OneAnnounce extends Component {
       }
 
       render() {
-          
+
             if (this.state.announcement) {
                   const { _id, author, service, additionalServices, title, description, location, applicants } = this.state.announcement;
                   const { firstName, lastName, image } = author;
@@ -29,7 +30,7 @@ class OneAnnounce extends Component {
                         <div>
                               <div className="block">
                                     <div style={{ display: 'flex' }}>
-                                          <img src={image} alt={firstName}/>
+                                          <img src={image} alt={firstName} />
                                           <p>Hello, my name is {lastName} {firstName}</p>
                                     </div>
 
@@ -50,12 +51,13 @@ class OneAnnounce extends Component {
                               </div>
 
                               <div className="block">
-                                    <MapSearch  user={location}/>
+                                    <MapSearch user={location} />
                               </div>
                               <br></br>
                               <br></br>
                               <div className="block">
-                                    <button>Contact me</button>
+                                   
+                                    <FormMessage idAnnouncement={_id} idReceiver={author._id} title={title} />
                                     <ApplyJob id={_id} applicants={applicants} />
                               </div>
                         </div>

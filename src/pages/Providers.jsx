@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import apiHandler from '../api/apiHandler';
-import SearchFeature from '../components/Auth/SearchFeature';
 import UserContext from '../components/Auth/UserContext';
 import ButtonAddFavoriteList from '../components/ButtonAddFavoriteList';
 import Autocomplete from '../components/Map/AutoComplete';
 import MapSearch from '../components/Map/MapSearch';
 import { averageRates } from '../utils';
 import Rating from "../components/Rate/Rating"
+import FormMessage from '../components/Message/FormMessage';
 
 export default class Providers extends Component {
       static contextType = UserContext;
@@ -43,9 +43,6 @@ export default class Providers extends Component {
                                     search={this.state.searchCoordinates && this.state.searchCoordinates} />
                         </div>
 
-                        <div>
-                              <SearchFeature searchProvider={true} list={this.state.list} />
-                        </div>
 
                         <div>
                               {this.state.list?.map(({ image, firstName, description, _id, reviews }, id) => (
@@ -64,7 +61,7 @@ export default class Providers extends Component {
 
 
                                                 <ButtonAddFavoriteList idProvider={_id} />
-                                                <button>CONTACT</button>
+                                                <FormMessage idReceiver={_id} />
                                           </div>
 
 

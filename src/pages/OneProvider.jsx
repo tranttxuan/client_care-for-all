@@ -6,6 +6,7 @@ import ButtonAddFavoriteList from '../components/ButtonAddFavoriteList';
 import ButtonBookingRequest from '../components/ButtonBookingRequest';
 import Carousel from '../components/Carousel';
 import MapSearch from '../components/Map/MapSearch';
+import FormMessage from '../components/Message/FormMessage';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 import { getAge } from '../utils';
@@ -43,8 +44,8 @@ class OneProvider extends Component {
       render() {
             const { provider, seeMore } = this.state;
             if (provider) {
-                  const { firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList} = provider;
-                  console.log("reviews", bookingList)
+                  const {_id, firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList} = provider;
+                  console.log("reviews", bookingList,_id)
                   let age = '';
                   if (provider.birthday) {
                         age = getAge(provider.birthday)
@@ -121,7 +122,8 @@ class OneProvider extends Component {
                               <br></br>
                               <br></br>
                               <div className="block">
-                                    <button>Contact</button>
+                                   
+                              <FormMessage idReceiver={_id} />
                                     <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
                               </div>
 
