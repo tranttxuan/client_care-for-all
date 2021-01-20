@@ -194,9 +194,21 @@ export default {
       //*******/
       sendMessage(data) {
             return service
-                  .post("/messages",data)
+                  .post("/messages", data)
                   .then((res) => res.data)
                   .catch(errorHandler);
       },
+      getMessages(idUser, received) {
+            return service
+                  .get(`/messages/${idUser}/${received}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
+      getThread(idMessage) {
+            return service
+                  .get(`/messages/${idMessage}`)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      }
 
 };

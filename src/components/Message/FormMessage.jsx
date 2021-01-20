@@ -95,7 +95,6 @@ class FormMessage extends Component {
                                     <label htmlFor="message">Your message</label>
                                     <textarea
                                           rows="10"
-                                          id="message"
                                           value={this.state.message}
                                           name="message"
                                           onChange={this.handleChange}

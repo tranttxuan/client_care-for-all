@@ -1,6 +1,7 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import apiHandler from '../../../api/apiHandler'
+import FormMessage from '../../Message/FormMessage'
 
 export default class FavoriteOrBookingList extends Component {
       state = {
@@ -39,7 +40,7 @@ export default class FavoriteOrBookingList extends Component {
 
       }
       render() {
-            console.log("fav", this.state.isFavList === "true", "list", this.state.list)
+            // console.log("fav", this.state.isFavList === "true", "list", this.state.list)
             return (
                   <table style={{ backgroundColor: "pink" }}>
                         <thead>
@@ -57,7 +58,7 @@ export default class FavoriteOrBookingList extends Component {
                                           <td>
                                                 {this.state.isFavList === "true" ?
                                                       <NavLink to={`/provider/${provider._id}`}>
-                                                            <img src={provider.image} alt={provider.firstName}/>
+                                                            <img src={provider.image} alt={provider.firstName} />
                                                       </NavLink>
                                                       : <img src={provider.image} alt={provider.firstName} />
                                                 }
@@ -77,7 +78,7 @@ export default class FavoriteOrBookingList extends Component {
 
                                           <td><button onClick={e => this.handleDelete(provider._id)}><i className="fas fa-trash-alt"></i></button></td>
                                           <td>Message <i className="fas fa-envelope"></i></td>
-
+                                          <td> <FormMessage idReceiver={provider._id} /></td>
                                     </tr>
 
 

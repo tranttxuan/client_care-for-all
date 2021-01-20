@@ -26,9 +26,9 @@ export default class Providers extends Component {
             this.setState({ searchCoordinates: place.geometry })
       }
       render() {
-            console.log("check list", this.state.list[1]?.reviews)
+            // console.log("check list", this.state.list[1]?.reviews)
             const rev = []
-            console.log("average", averageRates(rev));
+            // console.log("average", averageRates(rev));
             return (
                   <div>
                         <div style={{ marginBottom: "5rem" }}>

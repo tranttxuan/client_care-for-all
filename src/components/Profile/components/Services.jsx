@@ -23,7 +23,7 @@ export default class Services extends Component {
             }
       }
       render() {
-            console.log(this.state)
+            // console.log(this.state)
             return (
                   <div>
                         <label className='label' htmlFor="childCare">Child care</label>

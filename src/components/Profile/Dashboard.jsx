@@ -6,6 +6,7 @@ import AnnouncementList from '../Announcement/AnnouncementList';
 import FavoriteOrBookingList from './components/FavoriteOrBookingList';
 import apiHandler from '../../api/apiHandler';
 import AddReview from '../../pages/AddReview';
+import MessageTable from '../Message/MessageTable';
 
 
 
@@ -68,12 +69,16 @@ export default class Dashboard extends Component {
                                           </div>
 
                                           <br></br>
-                                          <h1>Website</h1>
+                                          <h1>Review for our website</h1>
                                           <div className="block">
                                               <AddReview />
                                           </div>
 
-                                          <a href="/message">Your Messages</a>
+                                          <br></br>
+                                          <h1>Message</h1>
+                                          <div className="block">
+                                              <MessageTable />
+                                          </div>
 
 
                                     </div>

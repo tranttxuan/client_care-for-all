@@ -7,6 +7,7 @@ import AddReview from './pages/AddReview';
 import Announcements from './pages/Announcements';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Messages from './pages/Messages';
 import OneAnnounce from './pages/OneAnnounce';
 import OneProvider from './pages/OneProvider';
 import Profile from './pages/Profile';
@@ -41,6 +42,9 @@ export default class App extends Component {
           <Route exact path="/providers/:service/s" component={Providers} />
           <Route exact path="/provider/:idProvider" component={OneProvider} />
           <ProtectRoute exact path="/provider/:idProvider/review" component={AddReview} />
+
+          {/* Message  */}
+          <ProtectRoute exact path="/message/:idMessage" component={Messages} />
         </Switch>
 
 

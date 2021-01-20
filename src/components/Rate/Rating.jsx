@@ -18,7 +18,7 @@ class Rating extends Component {
             if (this.props.match.path.split("/")[this.props.match.path.split("/").length - 1] !== "review" && this.props.match.path !== "/profile") {
                   this.setState({ rating: this.props.rate, inReviewCard: true })
             }
-            console.log("youre here", this.props.match.path)
+            // console.log("youre here", this.props.match.path)
 
       }
       onClick = (index) => {

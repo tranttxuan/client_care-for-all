@@ -44,8 +44,8 @@ class OneProvider extends Component {
       render() {
             const { provider, seeMore } = this.state;
             if (provider) {
-                  const {_id, firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList} = provider;
-                  console.log("reviews", bookingList,_id)
+                  const { _id, firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList } = provider;
+                  console.log("reviews", bookingList, _id)
                   let age = '';
                   if (provider.birthday) {
                         age = getAge(provider.birthday)
@@ -114,16 +114,16 @@ class OneProvider extends Component {
 
                                     {location.coordinates.length !== 0 && <div className="block">
                                           <h2>Location</h2>
-                                        
-                                          <MapSearch user={location}/>
+
+                                          <MapSearch user={location} />
                                     </div>}
                               </div>
                               <br></br>
                               <br></br>
                               <br></br>
                               <div className="block">
-                                   
-                              <FormMessage idReceiver={_id} />
+
+                                    <FormMessage idReceiver={_id} />
                                     <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
                               </div>
 
