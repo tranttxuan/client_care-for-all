@@ -1,28 +1,49 @@
 .marker {
       position: relative;
-      transform: translate(-50%, -50%);
+      /* transform: translate(-50%, -50%); */
 }
 
 .marker.user {
-      width: 80px;
-      height: 80px;
-      opacity: 0.5;
+      color: rgb(20, 10, 114);
+      font-size: 20px;
+      text-shadow: 0px 0px 20px #eb0000,
+            10px 10px 20px #eb0000,
+            -10px 10px 20px #eb0000,
+            -10px -10px 20px #eb0000,
+            10px -10px 20px #eb0000;
 }
 
-.marker.current, .marker.item {
-      width: 20px;
-      height: 20px;
+.marker.current,.marker.item ,.marker.search {
+      font-size: 20px;
 }
-.marker.search{
-      width: 200px;
-      height: 200px;
-      opacity: 0.3;
+
+.marker.item {
+      color: rgb(129, 0, 155);
+}
+.marker.current{
+      color: rgb(240, 0, 0);
+}
+.marker.search {
+      color: rgb(20, 10, 114);
+}
+.marker.search::after {
+      color: rgb(14, 4, 97);
+      position: absolute;
+      top: -70px;
+      left: -70px;
+      width: 150px;
+      height: 150px;
+      content: "";
+      border: 1px solid rgb(0, 18, 184);
+      border-radius: 50%;
+      background-color: blue;
+      opacity: 0.2;
 }
 
 .marker+p {
       display: none;
       position: absolute;
-      bottom: 0;
+      bottom: -15px;
       left: 0;
       color: red;
       width: max-content;

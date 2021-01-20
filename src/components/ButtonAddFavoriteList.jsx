@@ -8,7 +8,11 @@ export default class ButtonAddFavoriteList extends Component {
             isFavorite: false,
             message: ''
       }
-
+      componentDidMount() {
+            if (this.isFavorited()) {
+                  this.setState({ isFavorite: true })
+            }
+      }
       addToFavorite = () => {
             this.setState({ isFavorite: !this.state.isFavorite });
             const idProvider = this.props.idProvider;

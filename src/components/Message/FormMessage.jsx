@@ -54,7 +54,7 @@ class FormMessage extends Component {
                   apiHandler.sendMessage(data)
                         .then(response => {
                               console.log("check here", response)
-                              if (data.message === "Your are sending a message to yourself!") {
+                              if (data.message === "You are sending a message to yourself!") {
                                     this.setState(prevState => ({
                                           errors: { ...prevState.errors, err_submit: response.message }
                                     }))

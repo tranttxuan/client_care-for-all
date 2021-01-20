@@ -52,6 +52,7 @@ export default class ButtonBookingRequest extends Component {
                         >
                               {this.bookedProvider() ? "Booked" : "Booking request"}
                         </button>
+                        {this.state.message && <p>{this.state.message}</p>}
                   </Fragment>
 
             )

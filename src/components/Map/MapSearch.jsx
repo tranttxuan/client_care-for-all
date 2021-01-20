@@ -36,11 +36,11 @@ class MapSearch extends Component {
       }
 
       handleClick = (user) => {
-          if(this.props.match.path.includes("/providers/")){
-                this.props.history.push(`/provider/${user._id}`)
-          }else{
-            this.props.history.push(`/announcements/${user._id}`)
-          }
+            if (this.props.match.path.includes("/providers/")) {
+                  this.props.history.push(`/provider/${user._id}`)
+            } else {
+                  this.props.history.push(`/announcements/${user._id}`)
+            }
       }
       onHover = () => {
             return <p style={{ position: "absolute" }}>Your position</p>
@@ -55,10 +55,10 @@ class MapSearch extends Component {
             if (this.props.list) {
                   List = this.props.list;
             }
-            if(this.props.search){
+            if (this.props.search) {
                   Search = this.props.search.coordinates
             }
-          
+
             return (
                   <div>
 
@@ -69,8 +69,7 @@ class MapSearch extends Component {
                                     height: "20vh",
                                     width: "80vw",
                               }}
-                              center={ Search|| [this.state.lng, this.state.lat]}
-                              // [this.state.lng, this.state.lat]
+                              center={Search || [this.state.lng, this.state.lat]}
                         >
                               {/* EACH PROVIDER / EACH ANNOUNCEMENT */}
                               {User && User.coordinates.length !== 0 && <Marker
@@ -78,11 +77,7 @@ class MapSearch extends Component {
                                     coordinates={User.coordinates}
                                     onClick={(e => this.handleClick(User))}
                               >
-                                    <img className="marker user"
-                                          src="https://toppng.com/uploads/preview/alerta-mty-google-map-cluster-ico-11562871468f1tab89byc.png"
-                                          alt="marker"
-
-                                    />
+                                    <i className="fas fa-bullseye marker user"></i>
                                     <p>Page's address</p>
                               </Marker>}
 
@@ -95,12 +90,7 @@ class MapSearch extends Component {
                                                 coordinates={item.location.coordinates}
                                                 onClick={(e => this.handleClick(item))}
                                           >
-                                                <img className="marker item"
-                                                      src="https://image.pngaaa.com/968/417968-middle.png"
-                                                      alt="marker"
-
-                                                />
-
+                                                <i className="fas fa-map-marker-alt marker item"></i>
                                                 <p>{item.lastName} {item.firstName}</p>
 
                                           </Marker>
@@ -114,23 +104,17 @@ class MapSearch extends Component {
                                     coordinates={[this.state.lng, this.state.lat]}
 
                               >
-                                    <img className="marker current"
-                                          src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
-                                          alt="marker"
-                                    />
+                                    <i className="fas fa-map-marker-alt marker current"></i>
                                     <p>Your position</p>
                               </Marker>
 
                               {/* SEARCH  */}
-                              {Search &&  <Marker
+                              {Search && <Marker
                                     coordinates={Search}
 
                               >
-                                    <img className="marker search"
-                                            src="https://toppng.com/uploads/preview/alerta-mty-google-map-cluster-ico-11562871468f1tab89byc.png"
-                                          alt="marker"
-                                    />
-                                    
+                                    <i className="fas fa-map-marker-alt marker search"></i>
+                                    <p>Your search position</p>
                               </Marker>}
                         </Map>
                   </div >
