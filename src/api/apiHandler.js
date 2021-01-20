@@ -209,6 +209,12 @@ export default {
                   .get(`/messages/${idMessage}`)
                   .then((res) => res.data)
                   .catch(errorHandler);
-      }
+      },
+      addNewMessage(idMessage, data) {
+            return service
+                  .patch(`/messages/add/${idMessage}`, data)
+                  .then((res) => res.data)
+                  .catch(errorHandler);
+      },
 
 };
