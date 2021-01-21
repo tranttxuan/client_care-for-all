@@ -4,15 +4,16 @@ import NewAnnouncement from './components/Announcement/NewAnnouncement';
 import ProtectRoute from './components/Auth/ProtectRoute';
 import NavMain from './components/NavMain/NavMain';
 import AddReview from './pages/AddReview';
+import AllMessages from './pages/AllMessages';
 import Announcements from './pages/Announcements';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Messages from './pages/Messages';
 import OneAnnounce from './pages/OneAnnounce';
 import OneProvider from './pages/OneProvider';
 import Profile from './pages/Profile';
 import Providers from './pages/Providers';
 import Signup from './pages/Signup';
+import ChatThread from './pages/ChatThread';
 
 
 export default class App extends Component {
@@ -44,7 +45,8 @@ export default class App extends Component {
           <ProtectRoute exact path="/provider/:idProvider/review" component={AddReview} />
 
           {/* Message  */}
-          <ProtectRoute exact path="/message/:idMessage" component={Messages} />
+          <ProtectRoute exact path="/message/:idMessage" component={ChatThread} />
+          <ProtectRoute exact path="/message" component={AllMessages} />
         </Switch>
 
 

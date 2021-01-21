@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import apiHandler from '../../api/apiHandler';
 import UserContext from '../Auth/UserContext';
-import "../../styles/FormSignup.css"
 
 export default class FormSignup extends Component {
 	static contextType = UserContext;
@@ -99,23 +98,23 @@ export default class FormSignup extends Component {
 		const { err_lastName, err_firstName, err_email, err_password, err_submit } = errors;
 
 		return (
-			<section>
+			<Fragment>
 				<header>
-					<h1>Sign up</h1>
+					<h1 className="flex-row-center">Sign up</h1>
 				</header>
 
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleSubmit} className="flex-column">
 					<div className="form-group">
 						<label className='label' htmlFor="firstName">First Name</label>
 						<input
-							className={err_firstName ? "input failure" : 'input success'}
+							className={err_firstName && "failure" }
 							id="firstName"
 							type="text"
 							name="firstName"
 							value={firstName}
 							onChange={this.handleChange}
 						/>
-						{err_firstName && <p className="failure">{err_firstName}</p>}
+						{err_firstName && <p className="error-message">{err_firstName}</p>}
 
 
 					</div>
@@ -123,7 +122,7 @@ export default class FormSignup extends Component {
 					<div className="form-group">
 						<label className='label' htmlFor="lastName">Last name</label>
 						<input
-							className={err_lastName ? "input failure" : 'input success'}
+							className={err_lastName && "failure"}
 							id="lastName"
 							type="text"
 							name="lastName"
@@ -131,43 +130,43 @@ export default class FormSignup extends Component {
 							onChange={this.handleChange}
 
 						/>
-						{err_lastName && <p className="failure">{err_lastName}</p>}
+						{err_lastName && <p className="error-message">{err_lastName}</p>}
 					</div>
 
 					<div className="form-group">
 						<label className='label' htmlFor="email">Email</label>
 						<input
-							className={err_email ? "input failure" : 'input success'}
+							className={err_email && "failure"}
 							id="email"
 							type="text"
 							name="email"
 							value={email}
 							onChange={this.handleChange}
 						/>
-						{err_email && <p className="failure">{err_email}</p>}
+						{err_email && <p className="error-message">{err_email}</p>}
 					</div>
 
 					<div className="form-group">
 						<label className='label' htmlFor="password">Password</label>
 						<input
-							className={err_password ? "input failure" : 'input success'}
+							className={err_password && "failure"}
 							id="password"
 							type="password"
 							name="password"
 							value={password}
 							onChange={this.handleChange}
 						/>
-						{err_password && <p className="failure">{err_password}</p>}
+						{err_password && <p className="error-message">{err_password}</p>}
 					</div>
 
-					<button className="btn-submit">Sign up</button>
-					{err_submit && <p className="failure">{err_submit}</p>}
+					<button className="btn btn-action btn__auth">Sign up</button>
+					{err_submit && <p className="error-message">{err_submit}</p>}
 				</form>
 
 				<div>
-					<p>Already have an account? <Link to="/login"><strong>Log in</strong></Link> </p>
+					<p>Already have an account? <Link to="/login" className="btn"><strong>Log in</strong></Link> </p>
 				</div>
-			</section>
+			</Fragment>
 
 		)
 	}

@@ -33,7 +33,7 @@ export default class MessageTable extends Component {
       }
       render() {
             const { error, list, inSentBox } = this.state;
-            console.log(list)
+            
             return (
                   <div>
                         <div>

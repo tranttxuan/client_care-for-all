@@ -4,7 +4,7 @@ import FormSignup from '../components/FormsAuth/FormSignup'
 export default class Signup extends Component {
       render() {
             return (
-                  <div>
+                  <div className="block block--center login">
                         <FormSignup />
                   </div>
             )

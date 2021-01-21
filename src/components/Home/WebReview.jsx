@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import apiHandler from '../../api/apiHandler';
 import ReviewCard from '../ReviewCard';
+import "../../styles/Review.css";
+import Carousel from '../Carousel';
 
 export default class WebReview extends Component {
       state = {
@@ -14,17 +16,9 @@ export default class WebReview extends Component {
       render() {
             return (
                   <div>
-                        <div>
-                              {this.state.list.map((review, id) =>
-                                    <ReviewCard
-                                          key={id}
-                                          name={review.sender.firstName}
-                                          rate={review.rate}
-                                          review={review.review}
-                                    />
-                              )}
-                        </div>
+                        <Carousel reviews={this.state.list} />
                   </div>
+
             )
       }
 }

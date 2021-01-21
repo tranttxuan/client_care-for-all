@@ -14,6 +14,13 @@ export default class ButtonAddFavoriteList extends Component {
             }
       }
       addToFavorite = () => {
+            if (!this.context.user) {
+                  this.setState({ message: "Login before adding this provider to your favorite list" })
+                  setTimeout(() => {
+                        this.setState({message:''})
+                  }, 5000);
+                  return;
+            }
             this.setState({ isFavorite: !this.state.isFavorite });
             const idProvider = this.props.idProvider;
             if (!this.isFavorited()) {

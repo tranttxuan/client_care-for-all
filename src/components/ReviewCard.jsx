@@ -3,12 +3,12 @@ import Rating from './Rate/Rating'
 
 function ReviewCard({ rate, name, review }) {
       return (
-            <div className="review-card">
+            <div className="review-card block">
                   <div>
                         <h3>{name}</h3>
                         <Rating rate={rate} />
                   </div>
-                  <p>{review}</p>
+                  <p><i class="fas fa-quote-left"></i> {review}</p>
             </div>
       )
 }

@@ -30,7 +30,6 @@ export default class Dashboard extends Component {
       }
 
       render() {
-            console.log("user", this.state.user)
             if (this.state.user) {
                   const { image, firstName, lastName, birthday, formattedAddress, _id, favoriteProviders, bookingList } = this.state.user
                   const age = getAge(birthday)

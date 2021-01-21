@@ -9,22 +9,18 @@ function NavMain(props) {
       const handleLogout = () => {
             context.removeUser();
       }
-
       return (
-
-
-            <nav>
-                  <NavLink exact to="/">HOME</NavLink>
-
-                  <ul>
+            <nav className="flex-row">
+                  <NavLink exact to="/"><i class="fas fa-hands"></i><span>Care For All</span></NavLink>
+                  <ul className="flex-row">
                         {context.isLoggedIn && (
                               <React.Fragment>
-                                    <li>
-                                          <NavLink to="/">Message???</NavLink>
+                                    <li  className="nav__item">
+                                          <NavLink to="/message" ><i className="fas fa-envelope icon icon__message"></i><p>Message</p></NavLink>
                                     </li>
-                                    <li className="container-icon">
-                                          <p className="icon">Icon-YOU</p>
-                                          <ul className="after-icon">
+                                    <li className="nav__item nav__profile flex-column">
+                                          <img src={context.user.image && context.user.image} className="icon__profile"/>
+                                          <ul className="flex-column">
                                                 <li>Hello <strong>{context.user.firstName}</strong></li>
                                                 <li> <NavLink to="/profile">Your profile</NavLink></li>
                                                 <li onClick={handleLogout}>Log out</li>
@@ -37,14 +33,12 @@ function NavMain(props) {
 
                         {!context.isLoggedIn&& (
                               <React.Fragment>
-                                    <li><NavLink to="/signup">Sign up</NavLink> </li>
-                                    <li><NavLink to="/login">Log in</NavLink></li>
+                                    <li><NavLink to="/signup" className="btn">Sign up</NavLink> </li>
+                                    <li ><NavLink to="/login" className="btn btn__login">Log in</NavLink></li>
                               </React.Fragment>
                         )}
 
-
                   </ul>
-
             </nav>
       )
 }
