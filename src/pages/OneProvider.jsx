@@ -10,6 +10,7 @@ import FormMessage from '../components/Message/FormMessage';
 import OtherServices from '../components/Profile/components/OtherServices';
 import Services from '../components/Profile/components/Services';
 import { getAge } from '../utils';
+import "../styles/Providers_Annc_Pages/One_Annc_Provider_Page.css"
 
 
 class OneProvider extends Component {
@@ -60,72 +61,69 @@ class OneProvider extends Component {
                   }
 
                   return (
-                        <div>
-                              <div>
-                                    <button onClick={this.handleBack}><p><i className="fas fa-arrow-circle-left" /></p> Back</button>
-                                    <NavLink to={{
-                                          pathname: `/provider/${this.props.match.params.idProvider}/review`,
-                                          state: { name: provider.firstName }
-                                    }}
-                                    >Add Review</NavLink>
+                        <div className="OnePackInformation">
 
+                              <div className="block flex-row">
+                                    <img src={image} alt={this.firstName} />
 
-                                    <ButtonAddFavoriteList
-                                          idProvider={this.props.match.params.idProvider}
-                                          isAdded={isInFavList}
-                                    />
-                              </div>
-
-                              <div>
-                                    <div className="block">
-                                          <img src={image} alt={this.firstName} />
-                                          <p>{firstName} <strong>{lastName}</strong></p>
+                                    <div>
+                                          <h3><em>{firstName}</em> {lastName}</h3>
                                           {age && <p>{age} years old</p>}
-                                    </div>
+                                          <div className="btn-list">
+                                                <NavLink to={{
+                                                      pathname: `/provider/${this.props.match.params.idProvider}/review`,
+                                                      state: { name: provider.firstName }
+                                                }} className="btn btn-action-2"
+                                                >Add Review</NavLink>
 
-                                    <div className="block">
-                                          <h2>Hello, I am {firstName}</h2>
-                                          <p>{description}</p>
-                                    </div>
 
-                                    <div className="block">
-                                          <h2>Service offer:</h2>
-                                          <Services defaultValue={service} editable="false" />
-                                          <h2>I'm comfortable with:</h2>
-                                          <OtherServices defaultValue={additionalServices} editable="false" />
-                                    </div>
+                                                <ButtonAddFavoriteList
+                                                      idProvider={this.props.match.params.idProvider}
+                                                      isAdded={isInFavList}
+                                                />
 
-                                    <div className="block">
-                                          <h2>Skills and Experiences</h2>
-                                          <p>{experiences}</p>
-                                    </div>
+                                                <FormMessage idReceiver={_id} />
 
-                                    <div className="block">
-                                          <h2>Availability</h2>
-                                          <p>{availability}</p>
-                                    </div>
-
-                                    <div className="block">
-                                          <h2>Reviews</h2>
-                                          {(!seeMore && reviews.length !== 0) && <button onClick={this.seeMore}>more reviews</button>}
-                                          {reviews.length !== 0 ? <Carousel reviews={reviews} /> : <p>0 reviews</p>}
+                                                <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
+                                          </div>
 
                                     </div>
-
-                                    {location.coordinates.length !== 0 && <div className="block">
-                                          <h2>Location</h2>
-
-                                          <MapSearch user={location} />
-                                    </div>}
                               </div>
-                              <br></br>
-                              <br></br>
-                              <br></br>
+
                               <div className="block">
-
-                                    <FormMessage idReceiver={_id} />
-                                    <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
+                                    <h2>Hello, I am {firstName}</h2>
+                                    <p>{description}</p>
                               </div>
+
+                              <div className="block services">
+                                    <h2>Service offer:</h2>
+                                    <Services defaultValue={service} editable="false" />
+                                    <h2>I'm comfortable with:</h2>
+                                    <OtherServices defaultValue={additionalServices} editable="false" />
+                              </div>
+
+                              <div className="block">
+                                    <h2>Skills and Experiences</h2>
+                                    <p>{experiences}</p>
+                              </div>
+
+                              <div className="block">
+                                    <h2>Availability</h2>
+                                    <p>{availability}</p>
+                              </div>
+
+                              <div className="block">
+                                    <h2>Reviews</h2>
+                                    {(!seeMore && reviews.length !== 0) && <button onClick={this.seeMore}>more reviews</button>}
+                                    {reviews.length !== 0 ? <Carousel reviews={reviews} /> : <p>0 reviews</p>}
+
+                              </div>
+
+                              {location.coordinates.length !== 0 && <div className="block">
+                                    <h2>Location</h2>
+
+                                    <MapSearch user={location} />
+                              </div>}
 
 
                         </div>

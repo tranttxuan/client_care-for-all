@@ -10,11 +10,11 @@ export default class Services extends Component {
             const { name, checked } = event.target
             if (this.props.editable === "false") {
                   this.setState({ [name]: this.state.[name] })
-            } else {    
+            } else {
                   this.setState({ [name]: checked })
                   this.props.handleServices(name, checked);
             }
- 
+
       }
       componentDidMount() {
             if (this.props.defaultValue) {
@@ -26,7 +26,7 @@ export default class Services extends Component {
             // console.log(this.state)
             return (
                   <div>
-                        <label className='label' htmlFor="childCare">Child care</label>
+
                         <input
                               id="childCare"
                               type="checkbox"
@@ -34,8 +34,9 @@ export default class Services extends Component {
                               onChange={this.handleChange}
                               checked={this.state.childCare}
                         />
+                        <label className='label' htmlFor="childCare">Child care</label>
 
-                        <label className='label' htmlFor="seniorCare">Senior care</label>
+
                         <input
                               id="seniorCare"
                               type="checkbox"
@@ -43,8 +44,8 @@ export default class Services extends Component {
                               onChange={this.handleChange}
                               checked={this.state.seniorCare}
                         />
+                        <label className='label' htmlFor="seniorCare">Senior care</label>
 
-                        <label className='label' htmlFor="petCare">Pet care</label>
                         <input
                               id="petCare"
                               type="checkbox"
@@ -52,6 +53,7 @@ export default class Services extends Component {
                               onChange={this.handleChange}
                               checked={this.state.petCare}
                         />
+                        <label className='label' htmlFor="petCare">Pet care</label>
                   </div>
             )
       }

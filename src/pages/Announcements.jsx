@@ -6,7 +6,7 @@ import UserContext from '../components/Auth/UserContext';
 import Autocomplete from '../components/Map/AutoComplete';
 import MapSearch from '../components/Map/MapSearch';
 import FormMessage from '../components/Message/FormMessage';
-
+import "../styles/Providers_Annc_Pages/Providers_Annc_Pages.css"
 
 export default class Announcements extends Component {
       static contextType = UserContext;
@@ -26,9 +26,9 @@ export default class Announcements extends Component {
       }
       render() {
             return (
-                  <div>
+                  <div className="summary--public flex-column">
                         <div>
-                              <h3>Find jobs near by your location</h3>
+                              <h2>Find jobs near by your location</h2>
                               <Autocomplete onSelect={this.handleSelect} />
                         </div>
                         <div>
@@ -39,15 +39,16 @@ export default class Announcements extends Component {
                               />
                         </div>
 
-                        <div>
+                        <div className="summary--public__container ">
+                              <h3>{this.state.list.length} Announcements</h3>
                               {this.state.list.map(({ _id, title, time, description, applicants, author }, i) => (
                                     <div key={i} className="block">
                                           <NavLink to={`/announcements/${_id}`} >
-                                                <h3>{title}</h3>
+                                                <h3>{title}  <i class="fas fa-external-link-alt"></i></h3>
                                                 <p>{description.substring(0, 100)}...</p>
                                                 <p>Time:<strong>{time}</strong></p>
                                           </NavLink>
-                                          <div>
+                                          <div className="flex-row btn-list">
                                                 <ApplyJob id={_id} applicants={applicants} />
 
                                                 <FormMessage idAnnouncement={_id} idReceiver={author} title={title} />

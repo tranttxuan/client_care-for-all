@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 import { withRouter } from 'react-router-dom';
-import "../../styles/Map.css"
+import "../../styles/Map/Map.css"
 
 const Map = ReactMapboxGl({
       accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -60,14 +60,14 @@ class MapSearch extends Component {
             }
 
             return (
-                  <div>
+                  <div className="map">
 
                         <Map
                               style={"mapbox://styles/mapbox/streets-v9"}
                               zoom={[8]}
                               containerStyle={{
-                                    height: "20vh",
-                                    width: "80vw",
+                                    height: "40vh",
+                                    width: "100vw",
                               }}
                               center={Search || [this.state.lng, this.state.lat]}
                         >

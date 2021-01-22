@@ -25,13 +25,12 @@
 .btn-action {
       background-color: var(--color-deep-blue);
 }
-.btn--green{
+.btn-action-1{
       background-color: var(--color-green);
 }
-.btn--pink{
-      background-color: var(--color-purple);
+.btn-action-2{
+      background-color: rgba(var(--color-purple-1), 0.3);
 }
-
 
 .icon {
       translate: translateY(0rem) scale(1);
@@ -55,3 +54,10 @@ i:active {
       border: 1px solid var(--color-green);
       box-shadow: var(--box-shadow-primary);
 } */
+.btn-list{
+align-content: center;
+}
+.btn-list > *{
+margin: 1rem 1rem auto 0;
+outline: none;
+}

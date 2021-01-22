@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import apiHandler from '../../api/apiHandler'
 import UserContext from '../Auth/UserContext'
+import "../../styles/Table.css"
 
 export default class MessageTable extends Component {
       static contextType = UserContext;
@@ -35,13 +36,15 @@ export default class MessageTable extends Component {
             const { error, list, inSentBox } = this.state;
             
             return (
-                  <div>
+                  <div className="table block">
                         <div>
-                              <button onClick={this.GotoReceivedBox}>Received</button>
-                              <button onClick={this.GoToSentBox}>Sent</button>
+                              <button onClick={this.GotoReceivedBox}  className="btn">Received</button>
+                              <button onClick={this.GoToSentBox} className="btn">Sent</button>
                         </div>
-                        {error && <p>error</p>}
-                        <div>
+                        {error && <p  className="error-message">error</p>}
+                        <br></br>
+                        <hr></hr>
+                        <div className="table-container">
                               <table>
                                     <thead>
                                           <tr>

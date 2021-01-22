@@ -48,7 +48,8 @@ export default class ButtonBookingRequest extends Component {
                   <Fragment>
                         <button
                               onClick={this.booking}
-                              style={{ color: this.bookedProvider() && "green" }}
+                              style={{ color: this.bookedProvider() && "blue" }}
+                              className="btn btn-action-1"
                         >
                               {this.bookedProvider() ? "Booked" : "Booking request"}
                         </button>

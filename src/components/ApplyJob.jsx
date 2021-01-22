@@ -37,7 +37,7 @@ export default class ApplyJob extends Component {
       render() {
             return (
                   <Fragment >
-                        <button onClick={this.handleApply} style={{ color: this.didApply() && "green" }}>
+                        <button onClick={this.handleApply} style={{ color: this.didApply() && "blue" }} className="btn btn-action-1">
                               <p>{this.didApply() ? "Applied" : "Apply now!"}</p>
                         </button>
                         {this.state.error && <p>{this.state.error} <NavLink to="/login">Log in</NavLink></p>}

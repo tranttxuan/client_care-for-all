@@ -84,28 +84,26 @@ class FormMessage extends Component {
 
             return (
                   <div>
-                        <button onClick={this.showForm}>Contact</button>
+                        <button onClick={this.showForm} className="btn btn-action">Contact</button>
 
-                        <div className="contact-announcement"
-                              style={{ display: this.state.isDisplayed ? "block" : "none" }}
-                        >
-                              <form onSubmit={this.handleSubmit} >
-                                    <h4>Announcement title: {this.props.title}</h4>
+                        <div style={{ display: this.state.isDisplayed ? "block" : "none" }} className="overlay">
+                              <form onSubmit={this.handleSubmit} className="contact-announcement block--center flex-column">
+                                    <h3>Announcement title: {this.props.title}</h3>
 
-                                    <label htmlFor="message">Your message</label>
+                                    <label htmlFor="message"><strong>Your message</strong></label>
                                     <textarea
                                           rows="10"
                                           value={this.state.message}
                                           name="message"
                                           onChange={this.handleChange}
                                     />
-                                    <button>Send</button>
-                                    {this.state.errors.err_submit && <p>{this.state.errors.err_submit}</p>}
+                                    <button className="btn btn-action-1">Send</button>
+                                    {this.state.errors.err_submit && <p className="error-message">{this.state.errors.err_submit}</p>}
                                     {this.state.errors.err_auth
-                                          && <p>{this.state.errors.err_auth}
-                                                <strong><NavLink to="/login">Log in</NavLink></strong></p>}
+                                          && <p  className="error-message">{this.state.errors.err_auth} 
+                                                <strong className="btn__login"><NavLink to="/login"> Log in</NavLink></strong></p>}
                               </form>
-                              <button onClick={this.closeForm} >Xxx</button>
+                              <button onClick={this.closeForm} className="btn btn-action-1">X</button>
                         </div>
 
                   </div>

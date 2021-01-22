@@ -1,0 +1,42 @@
+.AutocompletePlace {
+      position: relative;
+      width: 100%;
+      margin-bottom: 2rem;
+}
+
+.AutocompletePlace-results {
+      position: absolute;
+      background-color: rgba(var(--color-green-1), 0.8);
+      z-index: 10;
+
+}
+
+.search__input {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: transparent;
+      transition: transform 250ms ease-in-out;
+      line-height: 1rem;
+      color: var(--color-purple);
+      background-color: transparent;
+      border-radius: 50px;
+      border: 1px solid rgba(var(--color-purple-1), 0.5);
+      transition: all 250ms ease-in-out;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+}
+
+.search__input::placeholder {
+      color: rgba(var(--color-purple-1), 0.5);
+      letter-spacing: 1.5px;
+}
+
+.search__input:hover,
+.search__input:focus {
+      padding: 12px 0;
+      outline: 0;
+      border: 1px solid transparent;
+      border-bottom: 1px solid rgba(var(--color-purple-1), 0.5);
+      border-radius: 0;
+      background-position: 100% center;
+}

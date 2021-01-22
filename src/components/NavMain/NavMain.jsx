@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import withUser from "../Auth/withUser"
-import "../../styles/NavMain.css";
+import "../../styles/Home/NavMain.css";
 
 function NavMain(props) {
       const { context } = props;

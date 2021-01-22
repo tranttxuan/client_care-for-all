@@ -10,7 +10,7 @@ export default class OtherServices extends Component {
       handleChange = (event) => {
             const { name, checked } = event.target
             if (this.props.editable === "false") {
-                  this.setState({ [name]: this.state.name })
+                  this.setState({ [name]: this.state.[name] })
             } else {
                   this.setState({ [name]: checked })
                   this.props.handleServices(name, checked);
@@ -27,7 +27,7 @@ export default class OtherServices extends Component {
             return (
                   <div>
                         <Fragment>
-                              <label className='label' htmlFor="houseKeeping">House Keeping</label>
+
                               <input
                                     id="houseKeeping"
                                     type="checkbox"
@@ -36,8 +36,8 @@ export default class OtherServices extends Component {
                                     checked={this.state.houseKeeping}
 
                               />
+                              <label className='label' htmlFor="houseKeeping">House Keeping</label>
 
-                              <label className='label' htmlFor="shoppingAndErrands">Shopping And Errands</label>
                               <input
                                     id="shoppingAndErrands"
                                     type="checkbox"
@@ -45,8 +45,8 @@ export default class OtherServices extends Component {
                                     onChange={this.handleChange}
                                     checked={this.state.shoppingAndErrands}
                               />
+                              <label className='label' htmlFor="shoppingAndErrands">Shopping And Errands</label>
 
-                              <label className='label' htmlFor="specialNeedsCare">Special needs care</label>
                               <input
                                     id="specialNeedsCare"
                                     type="checkbox"
@@ -54,16 +54,16 @@ export default class OtherServices extends Component {
                                     onChange={this.handleChange}
                                     checked={this.state.specialNeedsCare}
                               />
+                              <label className='label' htmlFor="specialNeedsCare">Special needs care</label>
 
-                              <label className='label' htmlFor="homeworkAssistance">Homework Assistance</label>
                               <input
                                     id="homeworkAssistance"
                                     type="checkbox"
                                     name="homeworkAssistance"
                                     onChange={this.handleChange}
                                     checked={this.state.homeworkAssistance}
-
                               />
+                              <label className='label' htmlFor="homeworkAssistance">Homework Assistance</label>
                         </Fragment>
                   </div>
             )
