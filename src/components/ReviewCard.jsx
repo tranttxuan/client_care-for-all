@@ -8,7 +8,7 @@ function ReviewCard({ rate, name, review }) {
                         <h3>{name}</h3>
                         <Rating rate={rate} />
                   </div>
-                  <p><i class="fas fa-quote-left"></i> {review}</p>
+                  <p><i className="fas fa-quote-left"></i> {review}</p>
             </div>
       )
 }

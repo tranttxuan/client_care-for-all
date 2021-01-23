@@ -1,28 +1,17 @@
 .carousel {
     position: relative;
+    margin-top: 2rem;
 }
 
-/* // Resetting default styles */
-
 ul {
-    padding: 0;
-    margin: 0;
     list-style-type: none;
 }
 
-/* // Fix for jumping arrows */
-.carousel-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 210px;
-}
 
 .carousel__slide {
-    margin-right: auto;
-    margin-left: auto;
     display: none;
-    max-width: 900px;
+    width: 50vw;
+
     list-style-type: none;
     text-align: center;
 }
@@ -31,18 +20,16 @@ ul {
     display: block;
 }
 
-/* // Content of slides */
 .carousel-slide__content {
-    margin-bottom: 19px;
-    font-size: 16px;
+    margin-bottom: 1.5rem;
 }
 
 /* // Carousel arrows */
 .carousel__arrow {
     position: absolute;
-    top: 50%;
+    bottom: 0%;
     display: block;
-    color: #111;
+    color: var(--color-dark);
     cursor: pointer;
     opacity: .75;
     transform: translateY(-50%);
@@ -59,11 +46,11 @@ ul {
 }
 
 .carousel__arrow--left {
-    left: 32px;
+    left: 1rem;
 }
 
 .carousel__arrow--right {
-    right: 32px;
+    right: 1rem;
 }
 
 
@@ -99,4 +86,15 @@ ul {
 .carousel__indicator--active,
 .carousel__indicator--active:hover {
     opacity: .75;
+}
+
+
+@media (min-width:600px) {
+    .carousel__slide {
+        max-width: 600px;
+    }
+    .carousel {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 }

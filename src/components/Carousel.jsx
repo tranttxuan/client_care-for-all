@@ -10,7 +10,7 @@ export default class Carousel extends Component {
       goToSlide = (index) => {
             this.setState({ activeIndex: index });
       }
-  
+
       goToPrevSlide = (e) => {
             e.preventDefault();
 
@@ -40,18 +40,12 @@ export default class Carousel extends Component {
 
             this.setState({ activeIndex: index });
       }
-      
+
 
       render() {
             return (
-                  <div className="carousel">
-                        <button
-                              
-                              className="carousel__arrow carousel__arrow--left"
-                              onClick={e => this.goToPrevSlide(e)}
-                        >
-                              <i className="fas fa-angle-left"></i>
-                        </button>
+                  <div className="carousel flex-column margin-bottom">
+
 
                         <ul className="carousel__slides">
                               {this.props.reviews.map((review, index) =>
@@ -76,12 +70,7 @@ export default class Carousel extends Component {
                               )}
                         </ul>
 
-                        <button
-                              className="carousel__arrow carousel__arrow--right"
-                              onClick={e => this.goToNextSlide(e)}
-                        >
-                              <i className="fas fa-angle-right"></i>
-                        </button>
+
 
                         <ul className="carousel__indicators">
                               {this.props.reviews.map((slide, index) =>
@@ -97,6 +86,21 @@ export default class Carousel extends Component {
                                     </li>
                               )}
                         </ul>
+                        <div className="flex-row">
+                              <button
+
+                                    className="carousel__arrow carousel__arrow--left"
+                                    onClick={e => this.goToPrevSlide(e)}
+                              >
+                                    <i className="fas fa-angle-left"></i>
+                              </button>
+                              <button
+                                    className="carousel__arrow carousel__arrow--right"
+                                    onClick={e => this.goToNextSlide(e)}
+                              >
+                                    <i className="fas fa-angle-right"></i>
+                              </button>
+                        </div>
                   </div>
 
 

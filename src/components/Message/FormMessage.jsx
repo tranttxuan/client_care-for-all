@@ -62,6 +62,7 @@ class FormMessage extends Component {
                                     this.setState(prevState => ({
                                           errors: { ...prevState.errors, err_submit: "Your message sent" }
                                     }))
+                                    
                                     setTimeout(() => {
                                           this.setState({ isDisplayed: false })
                                     }, 5000);

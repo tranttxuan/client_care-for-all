@@ -26,7 +26,7 @@ export default class AnnouncementList extends Component {
       render() {
             
             return (
-                  <table style={{ backgroundColor: "pink" }}>
+                  <table>
                         <thead>
                               <tr>
                                     <th>Date</th>
@@ -48,7 +48,7 @@ export default class AnnouncementList extends Component {
                                                       <ul>
                                                             {ann.applicants.map(((applicant, idApp) => {
                                                                   return (
-                                                                        <li key={idApp}><NavLink to={`/provider/${applicant._id}`}>{applicant.lastName}</NavLink></li>
+                                                                        <li key={idApp}><NavLink to={`/provider/${applicant._id}`}>{applicant.lastName} <i className="fas fa-angle-double-right"></i> </NavLink></li>
                                                                   )
                                                             }))
                                                             }

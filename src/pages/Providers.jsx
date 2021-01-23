@@ -32,30 +32,33 @@ export default class Providers extends Component {
             // console.log("average", averageRates(rev));
             return (
                   <div className="summary--public flex-column">
-                        <div className="total--public__search">
-                              <h2>Find providers near by your location</h2>
-                              <Autocomplete onSelect={this.handleSelect} />
-
-                        </div>
-
                         <div>
-                              <MapSearch
-                                    list={this.state.list}
-                                    search={this.state.searchCoordinates && this.state.searchCoordinates} />
+                              <div>
+                                    <h2>Find providers near by your location</h2>
+                                    <Autocomplete onSelect={this.handleSelect} />
+
+                              </div>
+
+                              <div>
+                                    <MapSearch
+                                          list={this.state.list}
+                                          search={this.state.searchCoordinates && this.state.searchCoordinates} />
+                              </div>
                         </div>
+
 
 
                         <div className="summary--public__container ">
-                              <h3>{this.state.list.length} Providers</h3>
+                              <h2>{this.state.list.length} Providers</h2>
                               {this.state.list?.map(({ image, firstName, description, _id, reviews }, id) => (
 
                                     <div className="block flex-row" key={id} >
-                                          <NavLink to={`/provider/${_id}`} target={"_blank"}>
+                                          <NavLink to={`/provider/${_id}`}>
                                                 <img src={image} alt={firstName} />
                                           </NavLink>
                                           <div>
-                                                <NavLink to={`/provider/${_id}`} target={"_blank"}>
-                                                      <h3>{firstName} <i class="fas fa-external-link-alt"></i></h3>
+                                                <NavLink to={`/provider/${_id}`} >
+                                                      <h3>{firstName} <i className="fas fa-external-link-alt"></i></h3>
                                                       <p>{description.substring(0, 100)}...</p>
                                                 </NavLink>
 

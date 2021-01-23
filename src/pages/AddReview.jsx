@@ -41,7 +41,7 @@ class AddReview extends Component {
                                     this.setState({ error: err.message })
                               })
                   } else {
-                        console.log("data", data)
+                        // console.log("data", data)
                         apiHandler.addWebReview(data)
                               .then(response => {
                                     this.setState({ displayMessage: true });
@@ -58,8 +58,8 @@ class AddReview extends Component {
       render() {
             return (
                   <Fragment>
-                        <h2>Your review for <strong>{this.props.location.state?.name}</strong></h2>
-                        {this.state.error && <p>{this.state.error}</p>}
+                        <h2>Your review for <strong>{this.props.location.state?.name ? this.props.location.state?.name : "website"}</strong></h2>
+                        {this.state.error && <p className="error_message" style={{color:"red"}}>{this.state.error}</p>}
                         <form onSubmit={this.handleSubmit}>
                               <div className="form-group">
                                     <label className='label' htmlFor="review">Write your reviews:</label>
@@ -70,11 +70,12 @@ class AddReview extends Component {
                                           name="review"
                                           value={this.state.review}
                                           onChange={this.handleChange}
+                                          className="margin-bottom"
                                     />
                               </div>
 
                               <Rating addStarRating={this.addStarRating} />
-                              <button>Add Review</button>
+                              <button className="btn btn-action-2">Add Review</button>
                         </form>
                         {this.state.displayMessage &&
                               <PopUp

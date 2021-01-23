@@ -1,3 +1,7 @@
+.map {
+      width: 100vw;
+      height: 40vh;
+}
 
 .marker {
       position: relative;
@@ -9,7 +13,7 @@
       font-size: 20px;
 }
 
-.marker.user::after{
+.marker.user::after {
       color: rgb(121, 117, 160);
       position: absolute;
       top: -17px;
@@ -21,19 +25,25 @@
       background-color: blue;
       opacity: 0.2;
 }
-.marker.current,.marker.item ,.marker.search {
+
+.marker.current,
+.marker.item,
+.marker.search {
       font-size: 20px;
 }
 
 .marker.item {
       color: rgb(129, 0, 155);
 }
-.marker.current{
+
+.marker.current {
       color: rgb(240, 0, 0);
 }
+
 .marker.search {
       color: rgb(20, 10, 114);
 }
+
 .marker.search::after {
       color: rgb(14, 4, 97);
       position: absolute;
@@ -59,4 +69,13 @@
 
 .marker:hover+p {
       display: block;
+}
+
+
+@media (min-width:1000px) {
+      .map {
+            width: 35vw;
+            height: 70vh;
+      }
+      
 }

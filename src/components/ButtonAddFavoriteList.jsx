@@ -61,12 +61,12 @@ export default class ButtonAddFavoriteList extends Component {
 
             return (
                   <Fragment key={this.props.isAdded}>
-                        <button onClick={this.addToFavorite}>
+                        <button onClick={this.addToFavorite} className="btn_favorite">
                               {this.isFavorited() ?
                                     <i className="fas fa-heart" style={{ color: "red" }} />
                                     : <i className="far fa-heart solid" />}
                         </button>
-                        {this.state.message && <p>{this.state.message}</p>}
+                        {this.state.message && <p className="error-message">{this.state.message}</p>}
                   </Fragment>
             )
       }

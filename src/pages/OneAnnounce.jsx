@@ -22,56 +22,66 @@ class OneAnnounce extends Component {
       }
 
       render() {
+            if (!this.state.announcement) {
+                  return (<div><i className="fas fa-spinner"></i> Loading...</div>)
+            }
 
-            if (this.state.announcement) {
-                  const { _id, author, service, additionalServices, title, description, location, applicants } = this.state.announcement;
-                  const { firstName, lastName, image } = author;
-                  console.log("check", location)
-                  return (
-                        <div className="OnePackInformation">
-                              <div className="block flex-row">
+            const { _id, author, service, additionalServices, title, description, location, applicants } = this.state.announcement;
+            const { firstName, lastName, image } = author;
+            console.log("check", location)
+            return (
+                  <div className="OnePackInformation one-announcement">
+                        <div className="">
+                              <div className="block flex-row header">
                                     <img src={image} alt={firstName} />
                                     <div>
-                                          <h2>Hello, my name is {lastName} {firstName}</h2>
-                                          <div className="list-btn flex-row">
+                                          <h2>Hello, I am {firstName}</h2>
+                                          <div className="btn-list flex-row">
                                                 <FormMessage idAnnouncement={_id} idReceiver={author._id} title={title} />
+                                                <br></br>
                                                 <ApplyJob id={_id} applicants={applicants} />
                                           </div>
 
                                     </div>
+
                               </div>
+
+                              <div className="block OnePackInformation__services">
+                                    <h2>Requires: services</h2>
+                                    <div className="flex-row-space-evenly">
+                                          <Services
+                                                defaultValue={service}
+                                                editable="false"
+                                          />
+                                    </div>
+
+                                    <h2>Other services</h2>
+                                    <div >
+                                          <OtherServices defaultValue={additionalServices} editable="false" />
+
+                                    </div>
+                              </div>
+
                               <div className="block">
-                                    <h2><em>Title</em> <strong>{title}</strong></h2>
+                                    <h2><em>Title: </em> <strong>{title}</strong></h2>
                                     <p><em>Description: </em>{description}</p>
                               </div>
-
-                              <div className="block">
-                                    <h2>Requires: services</h2>
-                                    <Services
-                                          defaultValue={service}
-                                          editable="false"
-                                    />
-                                    <h2>Other services</h2>
-                                    <OtherServices defaultValue={additionalServices} editable="false" />
-                              </div>
-
-                              <div className="block">
-                                    <h2>Location</h2>
-                                    <MapSearch user={location} />
-                              </div>
-                              <br></br>
-                              <br></br>
 
                         </div>
 
 
-                  )
-            } else {
-                  return (
-                        <div>Loading...</div>
-                  )
 
-            }
+
+                        <div className="block">
+                              <h2>Location</h2>
+                              <MapSearch user={location} />
+                        </div>
+
+
+                  </div>
+
+
+            )
 
       }
 }

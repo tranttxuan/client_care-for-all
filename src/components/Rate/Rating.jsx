@@ -36,8 +36,8 @@ class Rating extends Component {
      
             return (
                   <div>
-                        {!inReviewCard && <h3>Star Rating</h3>}
-                        <div style={{ display: 'flex' }}>
+                        {!inReviewCard && <h3 style={{marginBottom:"0.5rem"}}>Star Rating</h3>}
+                        <div className="flex-row" style={{maxWidth:'max-content'}}>
 
                               {inReviewCard
                                     ? rateInCard.map((star, index) => {

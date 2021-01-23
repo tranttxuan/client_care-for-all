@@ -27,43 +27,52 @@ export default class OtherServices extends Component {
             return (
                   <div>
                         <Fragment>
+                              <div>
 
-                              <input
-                                    id="houseKeeping"
-                                    type="checkbox"
-                                    name="houseKeeping"
-                                    onChange={this.handleChange}
-                                    checked={this.state.houseKeeping}
+                                    <input
+                                          id="houseKeeping"
+                                          type="checkbox"
+                                          name="houseKeeping"
+                                          onChange={this.handleChange}
+                                          checked={this.state.houseKeeping}
 
-                              />
-                              <label className='label' htmlFor="houseKeeping">House Keeping</label>
+                                    />
+                                    <label className='label' htmlFor="houseKeeping">House Keeping</label>
+                              </div>
 
-                              <input
-                                    id="shoppingAndErrands"
-                                    type="checkbox"
-                                    name="shoppingAndErrands"
-                                    onChange={this.handleChange}
-                                    checked={this.state.shoppingAndErrands}
-                              />
-                              <label className='label' htmlFor="shoppingAndErrands">Shopping And Errands</label>
+                              <div>
+                                    <input
+                                          id="shoppingAndErrands"
+                                          type="checkbox"
+                                          name="shoppingAndErrands"
+                                          onChange={this.handleChange}
+                                          checked={this.state.shoppingAndErrands}
+                                    />
+                                    <label className='label' htmlFor="shoppingAndErrands">Shopping And Errands</label>
+                              </div>
+                              <div>
 
-                              <input
-                                    id="specialNeedsCare"
-                                    type="checkbox"
-                                    name="specialNeedsCare"
-                                    onChange={this.handleChange}
-                                    checked={this.state.specialNeedsCare}
-                              />
-                              <label className='label' htmlFor="specialNeedsCare">Special needs care</label>
+                                    <input
+                                          id="specialNeedsCare"
+                                          type="checkbox"
+                                          name="specialNeedsCare"
+                                          onChange={this.handleChange}
+                                          checked={this.state.specialNeedsCare}
+                                    />
+                                    <label className='label' htmlFor="specialNeedsCare">Special needs care</label>
+                              </div>
 
-                              <input
-                                    id="homeworkAssistance"
-                                    type="checkbox"
-                                    name="homeworkAssistance"
-                                    onChange={this.handleChange}
-                                    checked={this.state.homeworkAssistance}
-                              />
-                              <label className='label' htmlFor="homeworkAssistance">Homework Assistance</label>
+                              <div>
+                                    <input
+                                          id="homeworkAssistance"
+                                          type="checkbox"
+                                          name="homeworkAssistance"
+                                          onChange={this.handleChange}
+                                          checked={this.state.homeworkAssistance}
+                                    />
+                                    <label className='label' htmlFor="homeworkAssistance">Homework Assistance</label>
+                              </div>
+
                         </Fragment>
                   </div>
             )

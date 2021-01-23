@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import apiHandler from '../../api/apiHandler'
 import UserContext from '../Auth/UserContext'
-import "../../styles/Table.css"
+
 
 export default class MessageTable extends Component {
       static contextType = UserContext;

@@ -9,7 +9,9 @@
       animation: 12s autoPlay infinite linear;
       position: absolute;
       top: 2.5rem;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
 }
 
 .home__instructions>div>div:nth-child(1) {
@@ -46,12 +48,6 @@
       color: var(--color-purple);
 }
 
-.section {
-      margin-top: 1.5rem;
-      justify-content: space-between;
-
-}
-
 .card {
       width: 100%;
       padding-bottom: 1.5rem;
@@ -64,4 +60,12 @@
 
 .card>p {
       width: 55%;
+}
+
+@media (min-width:600px){
+      .home__instructions>div{
+            width: 60%;
+            justify-content: center;
+      }
+    
 }

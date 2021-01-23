@@ -42,7 +42,7 @@ export default class FavoriteOrBookingList extends Component {
       render() {
             // console.log("fav", this.state.isFavList === "true", "list", this.state.list)
             return (
-                  <table style={{ backgroundColor: "pink" }}>
+                  <table>
                         <thead>
                               <tr>
                                     <th>Image</th>
@@ -77,13 +77,13 @@ export default class FavoriteOrBookingList extends Component {
 
 
                                           <td><button onClick={e => this.handleDelete(provider._id)}><i className="fas fa-trash-alt"></i></button></td>
-                                          <td>Message <i className="fas fa-envelope"></i></td>
-                                          <td> <FormMessage idReceiver={provider._id} /></td>
+                                     
+                                          <td> <FormMessage idReceiver={provider._id} /> </td>
                                     </tr>
 
 
                               ))}
-
+                              {this.state.list.length === 0 && <tr key={0}><th colSpan="5">Empty list</th></tr>}
 
 
                         </tbody>

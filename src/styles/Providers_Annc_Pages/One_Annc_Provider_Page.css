@@ -2,9 +2,15 @@
       margin: 4rem 0;
 }
 
+.OnePackInformation div:first-child div div div {
+      margin: 0 !important;
+      justify-content: center;
+      align-items: baseline;
+}
+
 .OnePackInformation img {
-      width: 35vw;
-      height: 35vw;
+      width: 25vw;
+      height: 25vw;
       border-radius: 50%;
       box-shadow: var(--box-shadow-primary);
       margin-right: 5vw;
@@ -19,11 +25,15 @@
       margin-bottom: var(--margin-bottom-medium);
 }
 
-.OnePackInformation .map {
-      overflow: hidden;
+.OnePackInformation .btn-list * {
+      margin-right: 0.2rem !important;
 }
 
-
+.OnePackInformation .map {
+      overflow: hidden;
+      width: 100% !important;
+      height: 90%!important;
+}
 
 .OnePackInformation input[type="checkbox"] {
       display: none;
@@ -47,15 +57,68 @@
       background-color: var(--color-green) !important;
       transform: translateY(-2px) scale(1.15);
 }
-.OnePackInformation input[type="checkbox"]:not(:checked) +label {
-      background-color:rgba(var(--color-deep-blue-1), 0.2) !important;
-      transform: translateY(-2px) scale(1.15);
-      color: rgba(var(--color-deep-blue-1), 0.8);
-      background: linear-gradient(45deg,
-            rgba(var(--color-dark-1), 1), 0, 
-            rgba(var(--color-dark-1), 1), 50%, 
-            rgba(var(--color-dark-1), 0.6), 100%);
+
+.OnePackInformation input[type="checkbox"]:not(:checked)+label {
+      display: none;
+      visibility: hidden;
 }
-input:nth-last-child(10){
+
+input:nth-last-child(10) {
       margin-bottom: 2rem;
+}
+
+@media (min-width:700px) {
+      .OnePackInformation img {
+            width: 10vw;
+            height: 10vw;
+            margin-right: 1.5vw;
+      }
+
+      .OnePackInformation__header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+      }
+
+      .OnePackInformation__header>.block.header {
+            min-width: max-content;
+            margin-right: 3rem;
+      }
+
+      .OnePackInformation__header>.block.header .btn-list {
+            display: flex;
+            flex-wrap: wrap;
+      }
+
+      .OnePackInformation__header>.block.header .btn-list * {
+            padding-right: 2rem;
+      }
+
+      .OnePackInformation__header div:last-child {
+            min-width: 50%;
+            line-height: 2;
+
+      }
+
+      /* for one announcement page  */
+      .OnePackInformation.one-announcement {
+            display: flex;
+            flex-direction: row;
+      }
+
+      .OnePackInformation.one-announcement>div:first-child {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 80vh;
+            width: 45%;
+            margin-right: 5%;
+            overflow: auto;
+      }
+
+      .OnePackInformation.one-announcement>div:last-child {
+            width: 45%;
+            height: 80vh;
+      }
+
 }

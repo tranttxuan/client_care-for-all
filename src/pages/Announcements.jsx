@@ -28,23 +28,26 @@ export default class Announcements extends Component {
             return (
                   <div className="summary--public flex-column">
                         <div>
-                              <h2>Find jobs near by your location</h2>
-                              <Autocomplete onSelect={this.handleSelect} />
-                        </div>
-                        <div>
-                              <MapSearch
-                                    list={this.state.list}
-                                    search={this.state.searchCoordinates && this.state.searchCoordinates}
+                              <div>
+                                    <h2>Find jobs near by your location</h2>
+                                    <Autocomplete onSelect={this.handleSelect} />
+                              </div>
+                              <div>
+                                    <MapSearch
+                                          list={this.state.list}
+                                          search={this.state.searchCoordinates && this.state.searchCoordinates}
 
-                              />
+                                    />
+                              </div>
                         </div>
+
 
                         <div className="summary--public__container ">
-                              <h3>{this.state.list.length} Announcements</h3>
+                              <h2>{this.state.list.length} Announcements</h2>
                               {this.state.list.map(({ _id, title, time, description, applicants, author }, i) => (
                                     <div key={i} className="block">
                                           <NavLink to={`/announcements/${_id}`} >
-                                                <h3>{title}  <i class="fas fa-external-link-alt"></i></h3>
+                                                <h3>{title}  <i className="fas fa-external-link-alt"></i></h3>
                                                 <p>{description.substring(0, 100)}...</p>
                                                 <p>Time:<strong>{time}</strong></p>
                                           </NavLink>

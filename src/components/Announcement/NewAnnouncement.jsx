@@ -140,7 +140,7 @@ console.log("value", service, additionalServices)
                                     </div>
                               </div>
 
-                              <div className="block">
+                              <div className="block margin-bottom">
                                     <div className="form-group">
                                           <label className='label' htmlFor="formattedAddress">Address</label>
                                           {this.props.match.params.idPost
@@ -161,7 +161,7 @@ console.log("value", service, additionalServices)
                                     </div>
                               </div>
 
-                              <button>{isEditPage ? "Edit" : "Post"}</button>
+                              <button className="btn btn-action">{isEditPage ? "Edit" : "Post"}</button>
                         </form>
                         {displayMessage && <PopUp
                               message={isEditPage ? "Successfully updated this announcement" : "Successfully posted an announcement"}

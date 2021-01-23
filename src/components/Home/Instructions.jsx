@@ -9,8 +9,8 @@ function Instructions() {
                   <div>
 
                         <div className="flex-column">
-                              <h2 >Hire care</h2>
-                              <div className="flex-column section">
+                              <h2 className="margin-bottom">Hire care</h2>
+                              <div className="flex-column">
                                     <div className="card flex-row">
                                           <h3><i className="far fa-address-card"></i> Get Started</h3>
                                           <p>Create your free profile. Post jobs for the help you want and start connecting today</p>
@@ -28,8 +28,8 @@ function Instructions() {
                         </div>
 
                         <div className="flex-column">
-                              <h2 className="">Find job</h2>
-                              <div className="flex-column section">
+                              <h2 className="margin-bottom">Find job</h2>
+                              <div className="flex-column">
                                     <div className="card flex-row">
                                           <h3><i className="far fa-address-card"></i> Get Started</h3>
                                           <p>Create your free profile and post your profile</p>

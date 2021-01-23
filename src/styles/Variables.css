@@ -10,8 +10,17 @@
       --color-purple-1: 73, 0, 95;
       --color-red: #ff0000;
       /* MARGIN  */
-      --margin-bottom-large: 1rem;
+      --margin-bottom-large: 2rem;
       --margin-bottom-medium: 0.5rem;
       /* BOX-SHADOW */
       --box-shadow-primary: 0 2px 7px 0.5px rgba(var(--color-dark-1), 0.4);
+}
+
+
+@media (min-width:600px){
+     :root{
+            /* MARGIN  */
+    
+      /* --margin-bottom-medium: 1rem; */
+     }
 }

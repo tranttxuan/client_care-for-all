@@ -24,8 +24,13 @@ class OneProvider extends Component {
             apiHandler
                   .getOneProvider(this.props.match.params.idProvider, limit)
                   .then(data => {
-                        console.log("fetch data", data)
-                        this.setState({ provider: data[0] })
+                        if (data === "User does not share his profile") {
+                              this.setState({ provider: "" })
+                        } else {
+                              console.log("fetch data", data)
+                              this.setState({ provider: data[0] })
+                        }
+
                   })
                   .catch(err => console.log(err.message))
       }
@@ -44,47 +49,53 @@ class OneProvider extends Component {
 
       render() {
             const { provider, seeMore } = this.state;
-            if (provider) {
-                  const { _id, firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList } = provider;
-                  console.log("reviews", bookingList, _id)
-                  let age = '';
-                  if (provider.birthday) {
-                        age = getAge(provider.birthday)
+            if (!provider) {
+                  return <h1 className="margin-top">Sorry. This user want not to share his/her profile</h1>
+            }
+
+            const { _id, firstName, lastName, description, image, service, additionalServices, experiences, availability, reviews, location, bookingList } = provider;
+            // console.log("PROVIDER", provider)
+            let age = '';
+            if (provider.birthday) {
+                  age = getAge(provider.birthday)
+            }
+            //if this provider is in the current user's favorite list 
+            let isInFavList = false;
+
+            if (this.context.user) {
+                  if (this.context.user.favoriteProviders.includes(this.props.match.params.idProvider)) {
+                        isInFavList = true;
                   }
-                  //if this provider is in the current user's favorite list 
-                  let isInFavList = false;
+            }
 
-                  if (this.context.user) {
-                        if (this.context.user.favoriteProviders.includes(this.props.match.params.idProvider)) {
-                              isInFavList = true;
-                        }
-                  }
-
-                  return (
-                        <div className="OnePackInformation">
-
-                              <div className="block flex-row">
+            return (
+                  <div className="OnePackInformation">
+                        <div className="OnePackInformation__header">
+                              <div className="block flex-row header">
                                     <img src={image} alt={this.firstName} />
 
-                                    <div>
+                                    <div >
                                           <h3><em>{firstName}</em> {lastName}</h3>
-                                          {age && <p>{age} years old</p>}
-                                          <div className="btn-list">
-                                                <NavLink to={{
-                                                      pathname: `/provider/${this.props.match.params.idProvider}/review`,
-                                                      state: { name: provider.firstName }
-                                                }} className="btn btn-action-2"
-                                                >Add Review</NavLink>
+                                          {!isNaN(age) && <p>{age} years old</p>}
+                                          <div className="btn-list flex-column">
+                                                <div className="flex-row btn-list">
+                                                      <ButtonAddFavoriteList
+                                                            idProvider={this.props.match.params.idProvider}
+                                                            isAdded={isInFavList}
+                                                      />
 
+                                                      <FormMessage idReceiver={_id} />
+                                                </div>
 
-                                                <ButtonAddFavoriteList
-                                                      idProvider={this.props.match.params.idProvider}
-                                                      isAdded={isInFavList}
-                                                />
+                                                <div className="flex-column btn-list">
+                                                      <NavLink to={{
+                                                            pathname: `/provider/${this.props.match.params.idProvider}/review`,
+                                                            state: { name: provider.firstName }
+                                                      }} className="btn btn-action-2"
+                                                      >Add Review</NavLink>
+                                                      <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
+                                                </div>
 
-                                                <FormMessage idReceiver={_id} />
-
-                                                <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
                                           </div>
 
                                     </div>
@@ -94,43 +105,48 @@ class OneProvider extends Component {
                                     <h2>Hello, I am {firstName}</h2>
                                     <p>{description}</p>
                               </div>
+                        </div>
 
-                              <div className="block services">
-                                    <h2>Service offer:</h2>
+
+                        <div className="block OnePackInformation__services">
+                              <h2>Service offer:</h2>
+                              <div className="flex-row-space-evenly">
                                     <Services defaultValue={service} editable="false" />
-                                    <h2>I'm comfortable with:</h2>
+                              </div>
+
+                              <h2>I'm comfortable with:</h2>
+                              <div className="">
                                     <OtherServices defaultValue={additionalServices} editable="false" />
                               </div>
 
-                              <div className="block">
-                                    <h2>Skills and Experiences</h2>
-                                    <p>{experiences}</p>
-                              </div>
+                        </div>
 
-                              <div className="block">
-                                    <h2>Availability</h2>
-                                    <p>{availability}</p>
-                              </div>
+                        <div className="block">
+                              <h2>Skills and Experiences</h2>
+                              <p>{experiences}</p>
+                        </div>
 
-                              <div className="block">
-                                    <h2>Reviews</h2>
-                                    {(!seeMore && reviews.length !== 0) && <button onClick={this.seeMore}>more reviews</button>}
-                                    {reviews.length !== 0 ? <Carousel reviews={reviews} /> : <p>0 reviews</p>}
+                        <div className="block">
+                              <h2>Availability</h2>
+                              <p>{availability}</p>
+                        </div>
 
-                              </div>
-
-                              {location.coordinates.length !== 0 && <div className="block">
-                                    <h2>Location</h2>
-
-                                    <MapSearch user={location} />
-                              </div>}
-
+                        <div className="block">
+                              <h2>Reviews</h2>
+                              {(!seeMore && reviews.length !== 0) && <button onClick={this.seeMore} className="btn btn-action-2">more reviews</button>}
+                              {reviews.length !== 0 ? <Carousel reviews={reviews} /> : <p>0 reviews</p>}
 
                         </div>
-                  )
-            } else {
-                  return ''
-            }
+
+                        {location.coordinates.length !== 0 && <div className="block">
+                              <h2>Location</h2>
+
+                              <MapSearch user={location} />
+                        </div>}
+
+
+                  </div>
+            )
       }
 
 }

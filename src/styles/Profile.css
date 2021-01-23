@@ -1,4 +1,10 @@
-.profile_radio input + div {
+.profile-page {
+      margin-top: 5rem;
+      width: 100%;
+}
+
+
+.profile_radio input:not(:checked)+label+div {
       display: none;
 }
 
@@ -6,19 +12,20 @@
       display: flex;
 }
 
-.image, img {
+.image,
+img {
       width: 100px;
       height: 100px;
 }
-table img{
-      width: 30px;
-      height: 30px;
+
+table .block img {
+      width: 20px;
+      height: 20px;
 }
-.failure{
-      border: 1px solid red;
-      color: red;
-}
-.success{
-      color: green;
-      border: green;
+
+@media (min-width:600px) {
+      .profile-page .block {
+            width: 60vw;
+      }
+
 }

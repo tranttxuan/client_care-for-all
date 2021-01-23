@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import PopUp from '../../PopUp';
 import { withRouter } from 'react-router-dom';
 import apiHandler from '../../../api/apiHandler';
-import Star from '../../Rate/Star';
 import Rating from '../../Rate/Rating';
 
 class ReviewWeb extends Component {
@@ -43,7 +42,7 @@ class ReviewWeb extends Component {
             return (
                   <Fragment>
 
-                        {this.state.error && <p>{this.state.error}</p>}
+                        {this.state.error && <p className="error_message">{this.state.error}</p>}
                         <form onSubmit={this.handleSubmit}>
                               <div className="form-group">
                                     <label className='label' htmlFor="review">Write your reviews:</label>
@@ -54,11 +53,12 @@ class ReviewWeb extends Component {
                                           name="review"
                                           value={this.state.review}
                                           onChange={this.handleChange}
+                                          className="margin-bottom"
                                     />
                               </div>
                               <Rating addStarRating={this.addStarRating} />
 
-                              <button>Add Review</button>
+                              <button className="btn">Add Review</button>
                         </form>
                         {this.state.displayMessage &&
                               <PopUp

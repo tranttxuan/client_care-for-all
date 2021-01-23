@@ -66,8 +66,8 @@ class MapSearch extends Component {
                               style={"mapbox://styles/mapbox/streets-v9"}
                               zoom={[8]}
                               containerStyle={{
-                                    height: "40vh",
-                                    width: "100vw",
+                                    height: "100%",
+                                    width: "100%",
                               }}
                               center={Search || [this.state.lng, this.state.lat]}
                         >
@@ -75,7 +75,7 @@ class MapSearch extends Component {
                               {User && User.coordinates.length !== 0 && <Marker
 
                                     coordinates={User.coordinates}
-                                    onClick={(e => this.handleClick(User))}
+                                    // onClick={(e => this.handleClick(User))}
                               >
                                     <i className="fas fa-bullseye marker user"></i>
                                     <p>Page's address</p>

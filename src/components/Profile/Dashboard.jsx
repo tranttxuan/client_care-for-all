@@ -36,22 +36,22 @@ export default class Dashboard extends Component {
 
                   // console.log("list",bookingList)
                   return (
-                        <div className="dashboard__container">
-                              <h1>Dashboard</h1>
+                        <div className="flex-column">
+                              <h1 className="margin-bottom">Dashboard</h1>
                               <div>
-                                    <div className="dashboard__information">
-                                          <img src={image} className="image" alt="profile"/>
+                                    <div className="block margin-bottom">
+                                          <img src={image} className="image" alt="profile" />
                                           <p><em>Name : </em>{firstName} <strong>{lastName}</strong></p>
-                                          <p><em>Age: </em>{age}</p>
+                                          {!isNaN(age) && <p><em>Age: </em> {age}</p>}
                                           <p><em>Address : </em>{formattedAddress}</p>
                                     </div>
-                                    <br></br>
-                                    <br></br>
-                                    <div style={{ display: 'flex', flexDirection: "column" }}>
-                                          <h1>DO you want to find a care provider?</h1>
-                                          <div className="block">
-                                                <h2>Announcement list</h2>
-                                                <NavLink to="/announcements/new">Add new</NavLink>
+
+                                    <div className=" margin-bottom">
+                                          <h1 className="margin-bottom">Do you want to find a care provider?</h1>
+
+                                          <div className="block margin-bottom">
+                                                <h2 className="margin-bottom">Announcement list</h2>
+                                                <NavLink to="/announcements/new" className="btn btn-action">Add new</NavLink>
                                                 <AnnouncementList idUser={_id} />
                                           </div>
 
@@ -60,26 +60,27 @@ export default class Dashboard extends Component {
                                                 <FavoriteOrBookingList list={favoriteProviders} isFavList="true" />
                                           </div>
 
-                                          <br></br>
-                                          <h1>Do you want to find a job?</h1>
+                                    </div>
+                                    <div className="margin-bottom">
+                                          <h1 className="margin-bottom">Do you want to find a job?</h1>
+
                                           <div className="block">
                                                 <h2>You received booking requests</h2>
                                                 <FavoriteOrBookingList list={bookingList} isFavList="false" />
                                           </div>
 
-                                          <br></br>
-                                          <h1>Review for our website</h1>
+                                    </div>
+
+                                    <div className="margin-bottom">
+                                          <h1 className="margin-bottom">Review for our website</h1>
                                           <div className="block">
-                                              <AddReview />
+                                                <AddReview />
                                           </div>
+                                    </div>
 
-                                          <br></br>
-                                          <h1>Message</h1>
-                                          <div className="block">
-                                              <MessageTable />
-                                          </div>
-
-
+                                    <div>
+                                          <h1 className="margin-bottom">Message</h1>
+                                          <MessageTable />
                                     </div>
                               </div>
 

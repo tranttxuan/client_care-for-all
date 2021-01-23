@@ -140,7 +140,7 @@ class EditProfile extends Component {
 
                   apiHandler.updateProfile(fd)
                         .then(data => {
-                              console.log(data)
+                              // console.log(data)
                               if (data.message === "Email already taken") {
                                     this.setState(prevState => ({
                                           errors: { ...prevState.errors, err_submit: "Email already taken", err_email: "Email already taken" }
@@ -180,12 +180,12 @@ class EditProfile extends Component {
             // console.log("lala", this.state?.user?.lastName)
             return (
                   this.state.user ?
-                        <div>
-                              <h1>Edit your profile</h1>
+                        <div className="flex-column margin-bottom margin-top">
+                              <h1 className="margin-bottom" >Edit your profile</h1>
 
-                              <form onSubmit={this.handleSubmit} style={{ display: 'flex', flexDirection: "column" }}>
-                                    {err_submit && <p className="failure">{err_submit}</p>}
-                                    <div className="block">
+                              <form onSubmit={this.handleSubmit}>
+                                    {err_submit && <p className="error-message">{err_submit}</p>}
+                                    <div className="block margin-bottom">
                                           <h2>Profile status</h2>
                                           {this.state.user.isProvider
                                                 ? <h3>Your profile appears in the search results</h3>
@@ -193,8 +193,7 @@ class EditProfile extends Component {
                                           }
                                     </div>
 
-                                    <br></br>
-                                    <br></br>
+
                                     <div className="block">
                                           <img src={this.state.image || this.context.user.image} alt={this.state.user.firstName} />
                                           <div className="form-group">
@@ -211,32 +210,32 @@ class EditProfile extends Component {
 
                                     <br></br>
                                     <br></br>
-                                    <div className="block">
+                                    <div className="block margin-bottom">
 
                                           <div className="form-group">
                                                 <label className='label' htmlFor="firstName">First Name</label>
                                                 <input
-                                                      className={err_firstName ? "input failure" : 'input success'}
+                                                      className={err_firstName && "failure"}
                                                       id="firstName"
                                                       type="text"
                                                       name="firstName"
                                                       value={this.state.user.firstName}
                                                       onChange={this.handleChange}
                                                 />
-                                                {err_firstName && <p className="failure">{err_firstName}</p>}
+                                                {err_firstName && <p className="error-message">{err_firstName}</p>}
                                           </div>
 
                                           <div className="form-group">
                                                 <label className='label' htmlFor="lastName">Last name</label>
                                                 <input
-                                                      className={err_lastName ? "input failure" : 'input success'}
+                                                      className={err_lastName && "failure"}
                                                       id="lastName"
                                                       type="text"
                                                       name="lastName"
                                                       value={this.state.user.lastName}
                                                       onChange={this.handleChange}
                                                 />
-                                                {err_lastName && <p className="failure">{err_lastName}</p>}
+                                                {err_lastName && <p className="error-message">{err_lastName}</p>}
                                           </div>
 
 
@@ -245,49 +244,48 @@ class EditProfile extends Component {
                                                 <BirthdayFields
                                                       birthdayValue={this.state.user.birthday && this.state.user.birthday}
                                                       handleBirthday={this.handleBirthday}
-                                                      className={err_birthday ? "input failure" : 'input success'}
+                                                      className={err_birthday && "failure"}
                                                 />
-                                                {err_birthday && <p className="failure">{err_birthday}</p>}
+                                                {err_birthday && <p className="error-message">{err_birthday}</p>}
                                           </div>
 
                                           <div className="form-group">
                                                 <label className='label' htmlFor="email">Email</label>
                                                 <input
-                                                      className={err_email ? "input failure" : 'input success'}
+                                                      className={err_email && "failure"}
                                                       id="email"
                                                       type="text"
                                                       name="email"
                                                       value={this.state.user.email}
                                                       onChange={this.handleChange}
                                                 />
-                                                {err_email && <p className="failure">{err_email}</p>}
+                                                {err_email && <p className="error-message">{err_email}</p>}
                                           </div>
 
                                           <div className="form-group">
                                                 <label className='label' htmlFor="password">Password</label>
                                                 <input
-                                                      className={err_password ? "input failure" : 'input success'}
+                                                      className={err_password && "failure"}
                                                       id="password"
                                                       type="password"
                                                       name="password"
                                                       value={this.state.user.password}
                                                       onChange={this.handleChange}
-                                                      placeholder="*********"
+                                                      placeholder="*****"
                                                 />
-                                                {err_password && <p className="failure">{err_password}</p>}
+                                                {err_password && <p className="error-message">{err_password}</p>}
                                           </div>
 
                                     </div>
 
-                                    <br></br>
-                                    <br></br>
-                                    <div className="block">
+                                   
+                                    <div className="block margin-bottom">
                                           <div className="form-group">
-                                                <label className='label' htmlFor="formattedAddress">Address</label>
+                                                <label className='label' htmlFor="formattedAddress"><strong>Address</strong></label>
                                                 {this.context.user.formattedAddress &&
                                                       (<div>
-                                                            <p>Your current address: {this.context.user.formattedAddress}</p>
-                                                            <p>Change your address:</p>
+                                                            <p><strong>Your current address:</strong> {this.context.user.formattedAddress}</p>
+                                                            <h4>Change your address:</h4>
                                                       </div>
                                                       )}
                                                 <AutoComplete
@@ -310,12 +308,10 @@ class EditProfile extends Component {
 
                                     </div>
 
-                                    <br></br>
-                                    <br></br>
                                     <div className="block">
                                           <h2>About me</h2>
                                           <div className="form-group">
-                                                <label className='label' htmlFor="description">Description</label>
+                                                <label className='label' htmlFor="description"><strong>Description</strong></label>
                                                 <textarea
                                                       rows="10"
                                                       id="description"
@@ -335,7 +331,7 @@ class EditProfile extends Component {
 
                                           <div className="form-group">
                                                 <div className="form-group">
-                                                      <label className='label' htmlFor="experiences">Experiences</label>
+                                                      <label className='label' htmlFor="experiences"><strong>Experiences</strong></label>
                                                       <textarea
                                                             rows="10"
                                                             id="experiences"
@@ -350,8 +346,8 @@ class EditProfile extends Component {
 
                                     <br></br>
                                     <br></br>
-                                    <div className="block">
-                                          <h2>Everyone can view my profile</h2>
+                                    <div className="block margin-bottom">
+                                          <h2>Who can see my profile?</h2>
                                           <div className="form-group">
                                                 <VisibilityField
                                                       defaultValue={this.state.user.isProvider}
@@ -361,11 +357,9 @@ class EditProfile extends Component {
 
                                     </div>
 
-                                    <br></br>
-                                    <br></br>
-                                    <div className="block">
+                                    <div className="block margin-bottom">
                                           <h2>I find a job/jobs at</h2>
-                                          <div className="form-group">
+                                          <div className=" flex-row-space-evenly margin-bottom">
                                                 <Services
                                                       defaultValue={this.state.user.service}
                                                       handleServices={this.handleServices}
@@ -374,7 +368,7 @@ class EditProfile extends Component {
                                           </div>
 
                                           <h2>I'm comfortable with:</h2>
-                                          <div className="form-group">
+                                          <div className="flex-row-space-evenly">
 
                                                 <OtherServices
                                                       defaultValue={this.state.user.additionalServices}
@@ -385,10 +379,7 @@ class EditProfile extends Component {
                                     </div>
 
 
-
-                                    <br></br>
-                                    <br></br>
-                                    <div className="block">
+                                    <div className="block margin-bottom">
                                           <h2>Availability</h2>
                                           <div className="form-group">
                                                 <input
@@ -402,7 +393,7 @@ class EditProfile extends Component {
 
                                     </div>
 
-                                    <button onClick={this.handleClick}>Edit</button>
+                                    <button onClick={this.handleClick} className="btn btn-action-1">Edit</button>
 
                               </form>
                               {this.state.showPopUP

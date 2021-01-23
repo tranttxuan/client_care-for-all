@@ -11,7 +11,7 @@ function NavMain(props) {
       }
       return (
             <nav className="flex-row">
-                  <NavLink exact to="/"><i class="fas fa-hands"></i><span>Care For All</span></NavLink>
+                  <NavLink exact to="/"><i className="fas fa-hands"></i><span>Care For All</span></NavLink>
                   <ul className="flex-row">
                         {context.isLoggedIn && (
                               <React.Fragment>

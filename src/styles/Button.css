@@ -25,11 +25,32 @@
 .btn-action {
       background-color: var(--color-deep-blue);
 }
-.btn-action-1{
+
+.btn-action-1 {
       background-color: var(--color-green);
 }
-.btn-action-2{
+
+.btn-action-2 {
       background-color: rgba(var(--color-purple-1), 0.3);
+}
+
+/* button on BANNER component */
+.btn__search {
+      background-color: rgba(var(--color-purple-1), 0.8);
+      margin: 1rem auto 0;
+      padding: 0.4rem 1rem;
+      color: white;
+
+}
+
+.btn__search:hover {
+      color: inherit;
+}
+
+.btn_favorite{
+border:none;
+display: block;
+background-color: transparent;
 }
 
 .icon {
@@ -43,21 +64,24 @@
 .icon:hover,
 i:active {
       color: var(--color-purple);
-      translate: translateY(-1rem) scale(1.2);
+      translate: translateY(-1rem) scale(1.1);
 
 }
+
 /* Button login signup  */
 .btn__auth {
       margin: 1rem;
 }
+
 /* .btn__login {
       border: 1px solid var(--color-green);
       box-shadow: var(--box-shadow-primary);
 } */
-.btn-list{
-align-content: center;
+.btn-list {
+      align-content: center;
 }
-.btn-list > *{
-margin: 1rem 1rem auto 0;
-outline: none;
+
+.btn-list>* {
+      margin: 1rem 1rem 1rem 0;
+      outline: none;
 }

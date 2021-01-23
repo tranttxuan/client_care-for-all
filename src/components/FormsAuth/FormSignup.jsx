@@ -41,10 +41,15 @@ export default class FormSignup extends Component {
 		}
 
 		//check password
+		const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
+		
 		if (!password) {
 			isValid = false;
 			errors.err_password = 'Please enter your password';
 		} else if (password.length < 6) {
+			isValid = false;
+			errors.err_password = "Enter a password, minimum of 6 characters, 1 uppercase, 1 lowercase and 1 number digit";
+		} else if(!regex.test((password))){
 			isValid = false;
 			errors.err_password = "Enter a password, minimum of 6 characters, 1 uppercase, 1 lowercase and 1 number digit";
 		}
@@ -107,7 +112,7 @@ export default class FormSignup extends Component {
 					<div className="form-group">
 						<label className='label' htmlFor="firstName">First Name</label>
 						<input
-							className={err_firstName && "failure" }
+							className={err_firstName && "failure"}
 							id="firstName"
 							type="text"
 							name="firstName"
