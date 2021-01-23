@@ -6,6 +6,7 @@ import AutocompletePlace from '../Map/AutoComplete';
 import PopUp from '../PopUp';
 import OtherServices from '../Profile/components/OtherServices';
 import Services from '../Profile/components/Services';
+
 class NewAnnouncement extends Component {
       static contextType = UserContext;
       state = {
@@ -25,7 +26,7 @@ class NewAnnouncement extends Component {
       componentDidMount() {
 
             if (this.props.match.params.idPost) {
-                  this.setState({ isEditPage: true, displayMessage: false,  })
+                  this.setState({ isEditPage: true, displayMessage: false, })
                   apiHandler.getOneAnnouncement(this.props.match.params.idPost)
                         .then(data => {
                               const { title, description, formattedAddress, service, additionalServices, time } = data;
@@ -78,14 +79,14 @@ class NewAnnouncement extends Component {
       render() {
             const { error, displayMessage, idPost, isEditPage, ...states } = this.state
             const { service, time, title, description, additionalServices, formattedAddress } = states;
-console.log("value", service, additionalServices)
+            // console.log("value", service, additionalServices)
             return (
                   <Fragment>
-                        {error && <p>error</p>}
-                        <form onSubmit={this.handleSubmit}>
-                              <div className="block">
-                                    <h2>What kind of service do you offer?</h2>
-                                    <div className="form-group">
+                        {error && <p className="error-message">error</p>}
+                        <form onSubmit={this.handleSubmit} className="margin-bottom margin-top">
+                              <div className="block margin-bottom margin-top">
+                                    <h2 className="margin-bottom">What kind of service do you offer?</h2>
+                                    <div className="form-group margin-bottom">
                                           {!this.props.match.params.idPost
                                                 ? (<Services
                                                       defaultValue={service}
@@ -115,9 +116,9 @@ console.log("value", service, additionalServices)
                                     </div>
                               </div>
 
-                              <div className="block">
+                              <div className="block margin-bottom">
                                     <div className="form-group">
-                                          <label className='label' htmlFor="title">Title</label>
+                                          <label className='label' htmlFor="title"><strong>Title</strong></label>
                                           <input
                                                 id="title"
                                                 type="text"
@@ -128,7 +129,7 @@ console.log("value", service, additionalServices)
                                     </div>
 
                                     <div className="form-group">
-                                          <label className='label' htmlFor="description">Description</label>
+                                          <label className='label' htmlFor="description"><strong>Description</strong></label>
                                           <textarea
                                                 rows="10"
                                                 id="description"
@@ -142,15 +143,15 @@ console.log("value", service, additionalServices)
 
                               <div className="block margin-bottom">
                                     <div className="form-group">
-                                          <label className='label' htmlFor="formattedAddress">Address</label>
+                                          <label className='label' htmlFor="formattedAddress"><strong>Address</strong></label>
                                           {this.props.match.params.idPost
                                                 && <p>Your current address: {formattedAddress}</p>}
                                           <AutocompletePlace onSelect={this.handlePlace} />
                                     </div>
-
-
+                              </div>
+                              <div className="block margin-bottom">
                                     <div className="form-group">
-                                          <label className='label' htmlFor="time">Time</label>
+                                          <label className='label' htmlFor="time"><strong>Time</strong></label>
                                           <input
                                                 id="time"
                                                 type="text"
@@ -165,10 +166,15 @@ console.log("value", service, additionalServices)
                         </form>
                         {displayMessage && <PopUp
                               message={isEditPage ? "Successfully updated this announcement" : "Successfully posted an announcement"}
-                              btnOne="Edit"
+                              // btnOne="Edit"
+                              // handleBtnOne={() => {
+                              //       this.props.history.push(`/announcements/edit/${idPost}`)
+                              //       window.location.reload();
+                              // }}
+                              btnOne="Home"
                               handleBtnOne={() => {
-                                    this.props.history.push(`/announcements/edit/${idPost}`)
-                                    window.location.reload();
+                                    this.props.history.push("/")
+                                 
                               }}
                               btnTwo="Dashboard"
                               handleBtnTwo={() => this.props.history.push("/profile")}

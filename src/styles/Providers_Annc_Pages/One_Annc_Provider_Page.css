@@ -29,10 +29,16 @@
       margin-right: 0.2rem !important;
 }
 
+.OnePackInformation__services > div:nth-of-type(2)>div{
+      display: flex;
+      justify-content: flex-start!important;
+      flex-wrap:  wrap ;
+}
+
+
 .OnePackInformation .map {
       overflow: hidden;
       width: 100% !important;
-      height: 90%!important;
 }
 
 .OnePackInformation input[type="checkbox"] {

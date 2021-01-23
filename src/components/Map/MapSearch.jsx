@@ -49,15 +49,15 @@ class MapSearch extends Component {
       render() {
             // list is an object
             let User, List, Search;
-            if (this.props.user) {
-                  User = this.props.user;
-            }
+            User =  this.props.user && this.props.user
             if (this.props.list) {
                   List = this.props.list;
             }
             if (this.props.search) {
                   Search = this.props.search.coordinates
             }
+            // console.log({List},User,{Search})
+            // console.log("check", User.coordinates, User?.coordinates.length !== 0 )
 
             return (
                   <div className="map">
@@ -71,6 +71,7 @@ class MapSearch extends Component {
                               }}
                               center={Search || [this.state.lng, this.state.lat]}
                         >
+
                               {/* EACH PROVIDER / EACH ANNOUNCEMENT */}
                               {User && User.coordinates.length !== 0 && <Marker
 

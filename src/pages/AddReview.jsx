@@ -60,7 +60,7 @@ class AddReview extends Component {
                   <Fragment>
                         <h2>Your review for <strong>{this.props.location.state?.name ? this.props.location.state?.name : "website"}</strong></h2>
                         {this.state.error && <p className="error_message" style={{color:"red"}}>{this.state.error}</p>}
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} className="add-review">
                               <div className="form-group">
                                     <label className='label' htmlFor="review">Write your reviews:</label>
                                     <textarea

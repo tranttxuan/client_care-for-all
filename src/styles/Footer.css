@@ -1,0 +1,27 @@
+footer {
+      text-align: center;
+      padding: 2rem 0rem;
+      background-color: rgba(0, 191, 255, 0.3);
+      transform: translateX(-10%);
+      width: 100vw;
+      height: 10vh;
+      position: relative;
+      bottom: 0;
+}
+
+footer h2 {
+
+      font-size: 13px;
+}
+
+footer i {
+      font-size: small;
+      color: var(--color-deep-blue);
+
+}
+
+form.edit-announcement ~ footer,
+.chat-thread ~ footer, .add-review ~footer{
+      position: absolute;
+      bottom: 0;
+}

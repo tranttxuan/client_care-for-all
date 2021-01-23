@@ -403,9 +403,9 @@ class EditProfile extends Component {
                                                 // the user has a public page 
                                                 this.props.history.push(`/provider/${this.context.user._id}`)
                                           }}
-                                          btnTwo="Dashboard"
+                                          btnTwo="Home"
                                           handleBtnTwo={() => {
-                                                this.props.history.push("/profile")
+                                                this.props.history.push("/")
                                                 window.location.reload();
                                           }}
                                     />}

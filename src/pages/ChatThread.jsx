@@ -43,7 +43,7 @@ export default class ChatThread extends Component {
             const { sender, receiver, announcement, messagesBox } = this.state.list;
             // console.log(messagesBox)
             return (
-                  <div>
+                  <div className="chat-thread">
                         {announcement && <h3 className="margin-bottom">Announcement: <strong>{announcement.title}</strong></h3>}
 
                         <div className=" margin-top margin-bottom">

@@ -27,7 +27,7 @@ class OneProvider extends Component {
                         if (data === "User does not share his profile") {
                               this.setState({ provider: "" })
                         } else {
-                              console.log("fetch data", data)
+                              // console.log("fetch data", data)
                               this.setState({ provider: data[0] })
                         }
 
@@ -91,7 +91,7 @@ class OneProvider extends Component {
                                                       <NavLink to={{
                                                             pathname: `/provider/${this.props.match.params.idProvider}/review`,
                                                             state: { name: provider.firstName }
-                                                      }} className="btn btn-action-2"
+                                                      }} className="btn btn-action-2 "
                                                       >Add Review</NavLink>
                                                       <ButtonBookingRequest bookingList={bookingList} idProvider={this.props.match.params.idProvider} />
                                                 </div>
@@ -115,7 +115,7 @@ class OneProvider extends Component {
                               </div>
 
                               <h2>I'm comfortable with:</h2>
-                              <div className="">
+                              <div className="flex-row-space-evenly">
                                     <OtherServices defaultValue={additionalServices} editable="false" />
                               </div>
 

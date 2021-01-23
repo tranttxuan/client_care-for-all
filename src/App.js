@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Providers from './pages/Providers';
 import Signup from './pages/Signup';
 import ChatThread from './pages/ChatThread';
+import Footer from './components/Footer';
 
 
 export default class App extends Component {
@@ -49,7 +50,7 @@ export default class App extends Component {
           <ProtectRoute exact path="/message" component={AllMessages} />
         </Switch>
 
-
+        <Footer />
       </div>
     )
   }
